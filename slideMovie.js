@@ -3,12 +3,12 @@ const options = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjU2MTA2YzQzZWQ4YTE4MWY1NTQ1MWQyNzE1N2IwNSIsIm5iZiI6MTY1Mzc1MzI3Ni42NTEsInN1YiI6IjYyOTI0NWJjNWE0NjkwMDA5ZTQ1YzYyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJVNpdz4E-lTr5XxqqUpbVkVRufZ_llITMvAPxrtxFw", // Replace with your actual API key
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjU2MTA2YzQzZWQ4YTE4MWY1NTQ1MWQyNzE1N2IwNSIsIm5iZiI6MTY1Mzc1MzI3Ni42NTEsInN1YiI6IjYyOTI0NWJjNWE0NjkwMDA5ZTQ1YzYyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJVNpdz4E-lTr5XxqqUpbVkVRufZ_llITMvAPxrtxFw",
   },
 };
 
 fetch(
-  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=2",
+  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=3",
   options
 )
   .then((res) => res.json())
@@ -16,6 +16,7 @@ fetch(
     const movies = data.results;
     console.log(movies);
     displayMovies(movies);
+    displayTopMovies(movies);
   })
   .catch((err) => {
     console.error("Error fetching movies:", err);
@@ -23,6 +24,7 @@ fetch(
       "<p class='error-message'>Failed to load movies. Please try again later.</p>";
   });
 
+// Function to display hero carousel with movies
 function displayMovies(movies) {
   const heroCarousel = document.getElementById("hero-carousel");
   heroCarousel.innerHTML = ""; // Clear any previous content
@@ -92,7 +94,7 @@ function displayMovies(movies) {
     action.classList.add("item-action", "top-down", "delay-6");
 
     const watchButton = document.createElement("a");
-    watchButton.href = `https://www.themoviedb.org/movie/${movie.id}`;
+    watchButton.href = `movie-details.html?id=${movie.id}`;
     watchButton.classList.add("btn", "btn-hover");
     watchButton.innerHTML = `<i class="bx bxs-right-arrow"></i> <span>Watch now</span>`;
 
@@ -117,7 +119,6 @@ function displayMovies(movies) {
   setTimeout(() => {
     $("#hero-carousel").trigger("destroy.owl.carousel"); // Destroy existing instance
     $("#hero-carousel").owlCarousel({
-      // Reinitialize the carousel with new items
       items: 1,
       dots: false,
       loop: true,
@@ -126,19 +127,21 @@ function displayMovies(movies) {
         "<i class='bx bx-chevron-left'></i>",
         "<i class='bx bx-chevron-right'></i>",
       ],
-      autoplay: false,
+      autoplay: true,
       autoplayHoverPause: true,
     });
-  }, 100); // Delay reinitialization to allow content to be appended
+  }, 100); // Delay reinitialization
 }
 
+// Fetch additional movie details like duration
 function fetchMovieDetails(movieId, durationElement) {
   const detailsURL = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`;
   const detailsOptions = {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: "Bearer YOUR_TMDB_API_KEY", // Replace with your actual API key
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjU2MTA2YzQzZWQ4YTE4MWY1NTQ1MWQyNzE1N2IwNSIsIm5iZiI6MTY1Mzc1MzI3Ni42NTEsInN1YiI6IjYyOTI0NWJjNWE0NjkwMDA5ZTQ1YzYyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJVNpdz4E-lTr5XxqqUpbVkVRufZ_llITMvAPxrtxFw", // Replace with your actual API key
     },
   };
 
@@ -152,4 +155,89 @@ function fetchMovieDetails(movieId, durationElement) {
       console.error(`Error fetching details for movie ID ${movieId}:`, err);
       durationElement.innerHTML = `<i class="bx bxs-time"></i> <span>N/A</span>`;
     });
+}
+
+// Function to display top movies in a carousel
+function displayTopMovies(movies) {
+  const movieCarousel = document.getElementById("top-movies-slide");
+  movieCarousel.innerHTML = ""; // Clear any previous content
+
+  movies.forEach((movie) => {
+    const movieItem = document.createElement("div");
+    movieItem.classList.add("movie-item");
+
+    const img = document.createElement("img");
+    const imageUrl = movie.poster_path
+      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+      : "./images/default-movie.jpg"; // Fallback image
+    img.src = imageUrl;
+    img.alt = movie.title || "Untitled Movie";
+    img.classList.add("movie-item-img");
+
+    const content = document.createElement("div");
+    content.classList.add("movie-item-content");
+
+    const title = document.createElement("div");
+    title.classList.add("movie-item-title");
+    title.textContent = movie.title || "Untitled";
+
+    const movieInfos = document.createElement("div");
+    movieInfos.classList.add("movie-infos");
+
+    const rating = document.createElement("div");
+    rating.classList.add("movie-info");
+    rating.innerHTML = `<i class="bx bxs-star"></i> <span>${
+      movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"
+    }</span>`;
+
+    const duration = document.createElement("div");
+    duration.classList.add("movie-info");
+    duration.innerHTML = `<i class="bx bxs-time"></i> <span>Loading...</span>`; // Placeholder
+
+    const hd = document.createElement("div");
+    hd.classList.add("movie-info");
+    hd.textContent = "HD";
+
+    const ageRating = document.createElement("div");
+    ageRating.classList.add("movie-info");
+    ageRating.textContent = "16+"; // Adjust as needed
+
+    movieInfos.appendChild(rating);
+    movieInfos.appendChild(duration);
+    movieInfos.appendChild(hd);
+    movieInfos.appendChild(ageRating);
+
+    content.appendChild(title);
+    content.appendChild(movieInfos);
+    movieItem.appendChild(img);
+    movieItem.appendChild(content);
+
+    movieCarousel.appendChild(movieItem);
+
+    // Fetch and update movie duration (or other movie details)
+    fetchMovieDetails(movie.id, duration);
+  });
+
+  // Reinitialize carousel with Owl Carousel
+  setTimeout(() => {
+    $("#top-movies-slide").trigger("destroy.owl.carousel"); // Destroy existing instance
+    $("#top-movies-slide").owlCarousel({
+      items: 2,
+      dots: false,
+      loop: true,
+      autoplay: true,
+      autoplayHoverPause: true,
+      responsive: {
+        500: {
+          items: 3,
+        },
+        1280: {
+          items: 4,
+        },
+        1600: {
+          items: 6,
+        },
+      },
+    });
+  }, 100); // Delay reinitialization
 }
