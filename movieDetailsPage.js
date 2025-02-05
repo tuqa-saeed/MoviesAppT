@@ -112,38 +112,47 @@ if (movieId) {
       }
     })
     .catch((error) => console.error("Error fetching trailer:", error));
-
-  // Fetch Reviews
-  // fetch(
-  //   `https://api.themoviedb.org/3/movie/${movieId}/reviews?language=en-US`,
-  //   options
-  // )
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     const reviewsList = document.getElementById("reviews-list");
-  //     reviewsList.innerHTML = ""; // Clear previous content
-
-  //     if (data.results.length === 0) {
-  //       reviewsList.innerHTML = "<p>No reviews available.</p>";
-  //     } else {
-  //       console.log(data);
-  //       data.results.forEach((review) => {
-  //         const reviewItem = document.createElement("div");
-  //         reviewItem.classList.add("review-item");
-  //         reviewItem.innerHTML = `
-  //           <p><strong>${review.author}</strong>: ${review.content.substring(
-  //           0,
-  //           400
-  //         )}...</p>
-  //         `;
-  //         reviewsList.appendChild(reviewItem);
-  //       });
-  //     }
-  //   })
-  //   .catch((error) => console.error("Error fetching reviews:", error));
 }
 
-// Back button functionality
-document.getElementById("back-button").addEventListener("click", () => {
-  window.history.back();
+// Handle Favorite Button Click
+document.addEventListener("DOMContentLoaded", () => {
+  const favoriteBtn = document.getElementById("favorite-btn");
+
+  // Ensure the button exists before adding event listeners
+  if (!favoriteBtn) {
+    console.error("Favorite button not found!");
+    return;
+  }
+
+  // Retrieve favorites from LocalStorage (ensure it's an array)
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  if (!movieId) {
+    console.error("Movie ID not found in URL!");
+    return;
+  }
+  console.log("test");
+  // Check if movie is already favorited
+  if (favorites.includes(movieId)) {
+    favoriteBtn.classList.add("favorited");
+    favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
+  }
+
+  // Handle Favorite Button Click
+  favoriteBtn.addEventListener("click", () => {
+    if (favorites.includes(movieId)) {
+      // Remove from favorites
+      favorites = favorites.filter((id) => id !== movieId);
+      favoriteBtn.classList.remove("favorited");
+      favoriteBtn.innerHTML = '<i class="bx bx-heart"></i>'; // Empty heart icon
+    } else {
+      // Add to favorites
+      favorites.push(movieId);
+      favoriteBtn.classList.add("favorited");
+      favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
+    }
+
+    // Save to localStorage
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  });
 });
