@@ -131,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Movie ID not found in URL!");
     return;
   }
-  console.log("test");
   // Check if movie is already favorited
   if (favorites.includes(movieId)) {
     favoriteBtn.classList.add("favorited");

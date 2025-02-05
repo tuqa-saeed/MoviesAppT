@@ -9,7 +9,7 @@ const options = {
 
 // Fetch Popular Movies
 fetch(
-  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=2",
   options
 )
   .then((res) => res.json())
@@ -26,13 +26,13 @@ fetch(
   .catch((err) => handleError("hero-carousel", err));
 
 // Fetch Popular TV Series
-fetch("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1", options)
+fetch("https://api.themoviedb.org/3/tv/popular?language=en-US&page=2", options)
   .then((res) => res.json())
   .then((data) => displayTopTvSeries(data.results))
   .catch((err) => handleError("hero-carousel", err));
 // Fetch Lastest Movies
 fetch(
-  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+  "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
   options
 )
   .then((res) => res.json())
@@ -208,6 +208,8 @@ function displayTopMovies(movies) {
     img.src = imageUrl;
     img.alt = movie.title || "Untitled Movie";
     img.classList.add("movie-item-img");
+    const link = document.createElement("a");
+    link.href = `movie-details.html?id=${movie.id}`;
 
     const content = document.createElement("div");
     content.classList.add("movie-item-content");
@@ -244,7 +246,8 @@ function displayTopMovies(movies) {
 
     content.appendChild(title);
     content.appendChild(movieInfos);
-    movieItem.appendChild(img);
+    movieItem.appendChild(link);
+    link.appendChild(img);
     movieItem.appendChild(content);
 
     movieCarousel.appendChild(movieItem);
@@ -292,6 +295,8 @@ function displayLastestMovies(movies) {
     img.src = imageUrl;
     img.alt = movie.title || "Untitled Movie";
     img.classList.add("movie-item-img");
+    const link = document.createElement("a");
+    link.href = `movie-details.html?id=${movie.id}`;
 
     const content = document.createElement("div");
     content.classList.add("movie-item-content");
@@ -328,7 +333,8 @@ function displayLastestMovies(movies) {
 
     content.appendChild(title);
     content.appendChild(movieInfos);
-    movieItem.appendChild(img);
+    movieItem.appendChild(link);
+    link.appendChild(img);
     movieItem.appendChild(content);
 
     movieCarousel.appendChild(movieItem);

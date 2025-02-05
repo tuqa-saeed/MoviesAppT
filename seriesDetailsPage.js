@@ -7,16 +7,16 @@ const options = {
   },
 };
 
-// Get movie ID from URL
+// Get series ID from URL
 const urlParams = new URLSearchParams(window.location.search);
 const seriesId = urlParams.get("id");
 
 if (seriesId) {
-  // Fetch Movie Details
+  // Fetch Series Details
   fetch(`https://api.themoviedb.org/3/tv/${seriesId}?language=en-US`, options)
     .then((response) => response.json())
     .then((data) => {
-      document.getElementById("movie-title").textContent = data.title;
+      document.getElementById("movie-title").textContent = data.name; // 'name' instead of 'title'
 
       document.getElementById("movie-banner").src = data.poster_path
         ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
@@ -25,16 +25,17 @@ if (seriesId) {
         .map((genre) => genre.name)
         .join(", ");
       document.getElementById("movie-description").textContent = data.overview;
-      document.getElementById("release-date").textContent = data.release_date;
+      document.getElementById("release-date").textContent = data.first_air_date; // 'first_air_date' for series
       document.getElementById("rating").textContent =
         data.vote_average.toFixed(1);
-      document.getElementById("runtime").textContent = data.runtime;
-      document.getElementById("budget").textContent =
-        data.budget.toLocaleString();
+      document.getElementById("runtime").textContent = data.episode_run_time
+        ? data.episode_run_time[0]
+        : "N/A"; // 'episode_run_time' for series, may be an array
+      document.getElementById("budget").textContent = "N/A"; // Series don't have a budget
       document.getElementById("production-companies").textContent =
         data.production_companies.map((company) => company.name).join(", ");
     })
-    .catch((error) => console.error("Error fetching movie details:", error));
+    .catch((error) => console.error("Error fetching series details:", error));
 
   // Fetch Cast & Crew
   fetch(`https://api.themoviedb.org/3/tv/${seriesId}/credits`, options)
@@ -59,7 +60,7 @@ if (seriesId) {
     })
     .catch((error) => console.error("Error fetching cast:", error));
 
-  // Fetch Similar Movies
+  // Fetch Similar Series
   fetch(
     `https://api.themoviedb.org/3/tv/${seriesId}/similar?language=en-US&page=1`,
     options
@@ -69,18 +70,18 @@ if (seriesId) {
       const similarMoviesList = document.getElementById("similar-movies-list");
       similarMoviesList.innerHTML = ""; // Clear previous content
 
-      data.results.slice(0, 5).forEach((movie) => {
-        const movieItem = document.createElement("div");
-        movieItem.classList.add("item");
-        movieItem.innerHTML = `
+      data.results.slice(0, 5).forEach((series) => {
+        const seriesItem = document.createElement("div");
+        seriesItem.classList.add("item");
+        seriesItem.innerHTML = `
           <img src="${
-            movie.poster_path
-              ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+            series.poster_path
+              ? `https://image.tmdb.org/t/p/w300${series.poster_path}`
               : "./images/movie-placeholder.jpg"
-          }" alt="${movie.title}">
-          <p>${movie.title}</p>
+          }" alt="${series.name}">
+          <p>${series.name}</p>
         `;
-        similarMoviesList.appendChild(movieItem);
+        similarMoviesList.appendChild(seriesItem);
       });
 
       // Initialize carousel
@@ -95,7 +96,7 @@ if (seriesId) {
         },
       });
     })
-    .catch((error) => console.error("Error fetching similar movies:", error));
+    .catch((error) => console.error("Error fetching similar series:", error));
 
   // Fetch Trailer
   fetch(`https://api.themoviedb.org/3/tv/${seriesId}/videos`, options)
