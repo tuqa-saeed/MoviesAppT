@@ -69,6 +69,7 @@ if (movieId) {
       similarMoviesList.innerHTML = ""; // Clear previous content
 
       data.results.slice(0, 5).forEach((movie) => {
+        console.log(movie);
         const movieItem = document.createElement("div");
         movieItem.classList.add("item");
         movieItem.innerHTML = `
