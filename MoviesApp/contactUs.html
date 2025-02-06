@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="grid.css" />
+    <link rel="stylesheet" href="app.css" />
+
+</head>
+<body class="body-b">
+    <section>
+         <!-- NAV -->
+     <div class="nav-wrapper">
+        <div class="container">
+          <div class="nav">
+           <!--  <a href="#" class="logo">
+              <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span
+                class="main-color"
+                >i</span
+              >x
+            </a> -->
+            <a href="#" class="logo">
+              <img src="images/logo.png" alt="Logo" class="logo" width="110px" height="110px">
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Genre</a></li>
+              <li><a href="#">Movies</a></li>
+              <li><a href="#">Series</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="contactUs.html">Contact Us</a></li>
+  
+              <li>
+                <a href="./signIn.html" class="btn btn-hover">
+                  <span>Sign in</span>
+                </a>
+              </li>
+            </ul>
+            <!-- MOBILE MENU TOGGLE -->
+            <div class="hamburger-menu" id="hamburger-menu">
+              <div class="hamburger"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END NAV -->
+    </section>
+  <div>
+    <div class="container-c">
+        <h2>Get In Touch</h2>
+        <form id="contact-form" onsubmit="sendMail(event)">
+            <input type="text" id="name" placeholder="Name" name="name" required>
+            <input type="text" id="phone" placeholder="070-000-000-0" name="phone" required>
+            <input type="email" id="email" placeholder="Email" name="email" required>
+            <textarea id="message" name="message" placeholder="Your message..." required></textarea>
+            <button type="submit" class="bttn">Submit</button>
+        </form>
+        
+        <p id="loading" style="display:none; color: blue;">Sending...</p>
+        
+        <p id="feedback" style="display:none; color: green;">Your message has been sent successfully!</p>
+    </div>
+  </div>
+   
+ <div>
+    <footer class="section">
+      
+        <div class="container">
+          
+          <div class="row">
+            <div class="col-4 col-md-6 col-sm-12">
+              <div class="content">
+              <!-- <a href="#" class="logo">
+                  <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span
+                    class="main-color"
+                    >i</span
+                  >x
+                </a>  -->
+                <a href="#" class="logo-img">
+                  <img src="images/logo.png" alt="Logo">
+              </a>
+  
+               
+                
+                 <p><br>
+                 A platform where users can explore currently showing movies and view their schedules.
+                </p>
+                <div class="social-list">
+                  <a href="#" class="social-item">
+                    <i class="bx bxl-facebook"></i>
+                  </a>
+                  <a href="#" class="social-item">
+                    <i class="bx bxl-twitter"></i>
+                  </a>
+                  <a href="#" class="social-item">
+                    <i class="bx bxl-instagram"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-8 col-md-6 col-sm-12">
+              <div class="row">
+                <div class="col-3 col-md-6 col-sm-6">
+                  <div class="content">
+                    <p><b>Flix</b></p><br>
+                    <ul class="footer-menu">
+                      <li><a href="#">About us</a></li>
+                      <li><a href="#">My profile</a></li>
+                      <li><a href="#">Services</a></li>
+                      <li><a href="contactUs.html">Contact Us</a></li>
+
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="col-3 col-md-6 col-sm-6">
+                  <div class="content">
+                    <p><b>Help</b></p>
+                    
+                  </div>
+                </div>
+             
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- END FOOTER SECTION -->
+   </section>
+ </div>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <script src="contact.js"></script>
+    
+
+</body>
+</html>

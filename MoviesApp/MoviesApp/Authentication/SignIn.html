@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+
+    <style>
+      :root {
+        --main-color: #1f83ed;
+        --body-bg: #181616;
+        --box-bg: #221f1f;
+        --text-color: #ffffff;
+        --nav-height: 60px;
+        --space-top: 30px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: var(--body-bg);
+      }
+      .container {
+        display: flex;
+        background: var(--text-color);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .login-box {
+        padding: 40px;
+        width: 50%;
+      }
+      .logo {
+        font-size: 24px;
+        color: var(--main-color);
+      }
+      h2 {
+        margin: 10px 0;
+        font-size: 22px;
+      }
+      p {
+        color: #666;
+        font-size: 14px;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .options {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+      .btn {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        background: var(--main-color);
+        color: var(--text-color);
+        cursor: pointer;
+      }
+      
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 5px;
+        background: #ddd;
+      }
+      .image {
+        background: #999;
+        height: 100px;
+      }
+
+      .image-grid{
+        background: url(../images/black-banner.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="login-box">
+        <div class="logo">Movies App</div>
+        <h2>Welcome to Best movies platform</h2>
+        <p>
+          Minnow Insights provides advanced data of content and target groups on
+          all streaming services worldwide.
+        </p>
+        <form id="form">
+          <input type="email" placeholder="Email" id="login-email" required />
+          <input type="password" placeholder="Password" id="login-password" required />
+          <button type="submit" id="login-btn" class="btn">Sign in</button>
+        </form>
+        <p>New to (app name)? <a href="signup.html">Sign Up</a></p>
+      </div>
+      
+      <div class="image-grid">
+      </div>
+    </div>
+
+    <script>
+      let login_email = document.getElementById("login-email");
+      let login_password = document.getElementById("login-password");
+      let login_btn = document.getElementById("login-btn");
+      let form = document.getElementById("form");
+      let user = JSON.parse(localStorage.getItem("user"));
+      
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+      });
+
+      login_btn.addEventListener("click", function(){
+        if(user!=null){
+          if(user.email === login_email.value && user.password === login_password.value){
+            let localStorageObject = {
+              "email" : user.email,
+              "password" : user.password,
+              "username" : user.username,
+              "status" : true,
+              "profileImage" : "./images/profile-user.png"
+            };
+
+            localStorage.setItem("user", JSON.stringify(localStorageObject));
+            
+            window.location.assign("http://127.0.0.1:5500/index.html");
+          }
+          else
+            window.alert("Login failed");
+        }
+        else{
+          alert("sign up please");
+        }
+      });
+    </script>
+  </body>
+</html>
