@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <script src="https://kit.fontawesome.com/d890c03bb3.js" crossorigin="anonymous"></script>
+
+    <style>
+      *{
+        list-style: none;
+      }
+
+      i{
+        color: red;
+        margin-right: 5px;
+      }
+
+      ul{
+        padding-left: 0;
+      }
+      :root {
+        --main-color: #1f83ed;
+        --body-bg: #181616;
+        --box-bg: #221f1f;
+        --text-color: #ffffff;
+        --nav-height: 60px;
+        --space-top: 30px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: var(--body-bg);
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 10px;
+        padding: 50px;
+        width: 400px;
+        max-width: 90%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .login-box {
+        padding: 40px;
+      }
+      .logo {
+        font-size: 24px;
+        color: var(--main-color);
+      }
+      h2 {
+        margin: 10px 0;
+        font-size: 22px;
+      }
+      p, li {
+        color: #666;
+        font-size: 14px;
+      }
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .options {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+      
+      .btn {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        background: var(--main-color);
+        color: #fff;
+        cursor: pointer;
+      }
+      
+      .image {
+        background: #999;
+        height: 100px;
+      }
+
+      #password-validation{
+        display: none;
+      }
+
+      #password-math-error{
+        color: red;
+        margin-left: 10px;
+        display: none;
+      }
+
+      #email-math-error{
+        color: red;
+        margin-left: 10px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">Movies App</div>
+      <h2>Welcome to Best movies platform</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam repudiandae consequuntur, quae ex consequatur modi.
+      </p>
+        
+      <form>
+        <input type="text" placeholder="Username" id="username" required />
+        <p id="email-math-error"><i class="fa-solid fa-triangle-exclamation"></i> email is already registerd</p>
+        <input type="email" placeholder="Email" id="email" required />
+        <p id="password-math-error"><i class="fa-solid fa-triangle-exclamation"></i> Passwords do not match!</p>
+        <input type="password" placeholder="Password" id="password" required />
+        <input type="password" placeholder="Confirm Password" id="confirm-password" required />
+        <button type="submit" id="submit-btn" class="btn">Sign Up</button>
+      </form>
+        
+      <div class="password-validation" id="password-validation">
+        <p>your password must contain :</p>
+        <ul>
+          <li><i class="fa-solid fa-circle-xmark"></i>At least 1 lower case</li>
+          <li><i class="fa-solid fa-circle-xmark"></i>At least 1 upper case</li>
+          <li><i class="fa-solid fa-circle-xmark"></i>At least 1 number</li>
+          <li><i class="fa-solid fa-circle-xmark"></i>At least 1 special character</li>
+        </ul>
+      </div>
+
+      <p>Already have an account? <a href="signin.html">Login</a></p>
+    </div>
+    <script>
+      let username = document.getElementById("username");
+      let email = document.getElementById("email");
+      let password = document.getElementById("password");
+      let confirm_password = document.getElementById("confirm-password");
+      let submit_btn = document.getElementById("submit-btn");
+      let form = document.querySelector("form");
+    
+      let password_validation = document.getElementById("password-validation");
+      let password_match_error = document.getElementById("password-math-error");
+      let email_match_error = document.getElementById("email-math-error");
+    
+      submit_btn.addEventListener("click", function (event) {
+        event.preventDefault();
+    
+        // Hide previous error messages
+        password_match_error.style.display = "none";
+        email_match_error.style.display = "none";
+        password_validation.style.display = "none";
+    
+        let isValid = true;
+    
+        // Password match validation
+        if (password.value !== confirm_password.value) {
+          password_match_error.style.display = "block";
+          isValid = false;
+        }
+    
+        // Password complexity validation
+        let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
+        if (!regex.test(password.value)) {
+          password_validation.style.display = "block";
+          isValid = false;
+        }
+    
+        // Retrieve existing users from local storage
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+    
+        // Check if email already exists
+        let existingUser = users.find(u => u.email === email.value);
+        if (existingUser) {
+          email_match_error.style.display = "block";
+          isValid = false;
+        }
+    
+        // If any validation failed, stop execution
+        if (!isValid) return;
+    
+        // Create user object
+        let user = {
+          username: username.value,
+          email: email.value,
+          password: password.value,
+          status: false,
+          profileImage: "./images/profile-user.png",
+          favorites: []
+        };
+    
+        // Add new user and update local storage
+        users.push(user);
+        localStorage.setItem("users", JSON.stringify(users));
+    
+        // Redirect after successful registration
+        window.location.assign("signin.html");
+      });
+    </script>
+    
+  </body> 
+</html>
