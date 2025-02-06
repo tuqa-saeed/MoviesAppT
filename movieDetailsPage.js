@@ -72,13 +72,14 @@ if (movieId) {
         const movieItem = document.createElement("div");
         movieItem.classList.add("item");
         movieItem.innerHTML = `
+        <a href="">
           <img src="${
             movie.poster_path
               ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
               : "./images/movie-placeholder.jpg"
           }" alt="${movie.title}">
           <p>${movie.title}</p>
-        `;
+        <a/>`;
         similarMoviesList.appendChild(movieItem);
       });
 
