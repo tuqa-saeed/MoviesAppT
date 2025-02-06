@@ -37,7 +37,7 @@ body {
 }
 
 #movie-title {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
@@ -224,8 +224,17 @@ h2 {
 
 @media only screen and (max-width: 850px) {
   .cast-member {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
+  }
+  .favorite-btn {
+    display: none;
+  }
+  #cast-list {
+    margin: 4rem;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.7rem;
   }
 }
 
