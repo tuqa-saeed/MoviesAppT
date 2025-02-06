@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./app.css">
+    <link rel="stylesheet" href="./grid.css">
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/d890c03bb3.js" crossorigin="anonymous"></script>
+
+    <style>
+      :root {
+        --main-color: #1f83ed;
+        --body-bg: #181616;
+        --box-bg: #221f1f;
+        --text-color: #ffffff;
+        --nav-height: 60px;
+        --space-top: 30px;
+      }
+
+      *{
+        scroll-behavior: smooth;
+      }
+
+      .main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+      }
+
+      .profile-image{
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        background-color: var(--text-color);
+        border: 2px solid var(--text-color);
+        margin-bottom: 10px;
+      }
+
+      .profile-image:hover{
+        border-color: var(--main-color);
+      }
+
+      .edit-btn, .logout{
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: 1px solid transparent;
+        transition: .5s;
+        cursor: pointer;
+        margin: 10px 0;
+        background-color: white;
+        color: #1f83ed;
+      }
+
+      #submit-data-form{
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: 1px solid transparent;
+        transition: .5s;
+        cursor: pointer;
+        margin: 10px 0;
+        background-color: var(--main-color);
+        color: var(--text-color);
+        border-radius: 5px;
+      }
+
+      #submit-data-form:hover{
+        background-color: transparent;
+        color: var(--text-color);
+        border-color: var(--main-color);
+      }
+
+      .edit-btn:hover{
+        background-color: transparent;
+        color: var(--main-color);
+        border-color: var(--main-color);
+      }
+
+      .logout{
+        background-color: var(--main-color);
+        color: var(--text-color);
+        margin: 0 10px;
+      }
+
+      .logout:hover{
+        background-color: transparent;
+        color: var(--main-color);
+        border-color: var(--main-color);
+      } 
+
+      .faviorite-data{
+        margin: 20px 0;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid var(--text-color);
+        background-color: transparent;
+        color: var(--text-color);
+        border-radius: 5px;
+      }
+
+      input:hover{
+        border-color: var(--main-color);
+      }
+
+      .user-data{
+        padding: 0 100px;
+      }
+
+      #username{
+        margin-bottom: 10px;
+      }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <div class="nav-wrapper">
+        <div class="container">
+          <div class="nav">
+            <a href="/index.html" class="logo">
+              <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span
+                class="main-color"
+                >i</span
+              >
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Genre</a></li>
+              <li><a href="#">Movies</a></li>
+              <li><a href="#">Series</a></li>
+              <li><a href="#">About</a></li>
+              <li id="nav-auth">
+                <a href="./Authentication/SignUp.html" class="btn btn-hover">
+                  <span>Sign Up</span>
+                </a>
+              </li>
+            </ul>
+            <!-- MOBILE MENU TOGGLE -->
+            <div class="hamburger-menu" id="hamburger-menu">
+              <div class="hamburger"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END NAV -->
+
+      <!-- USER DATA -->
+      <div class="main">
+        <img src="#" id="profile-image" class="profile-image" alt="profile image">
+        <div class="profile-data">
+          <h1 id="username"></h1>
+          <a href="#edit-form" class="edit-btn"><i class="fa-solid fa-pen-to-square"></i> Edit profile Data</a>
+          <button class="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        </div>
+        <form class="user-data" id="edit-form">
+          <h2>Edit User Data Form</h2>
+          <hr style="margin: 10px 0;">
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username-form" required>
+          
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password-form" required>
+          
+          <label for="confirm_password_form">Confirm Password</label>
+          <input type="password" name="confirm_password_form" id="confirm_password_form" required>
+          
+          <label for="image_form">Profile Picture</label>
+          <input type="file" name="image_form" id="image_form">
+          
+          <label for="country">Country</label>
+          <input type="text" name="country" id="country" placeholder="Country Name">
+          
+          <label for="date-of-birth">Date of birth</label>
+          <input type="date" name="date-of-birth" id="date_of_birth">
+
+          <button type="submit" id="submit-data-form">Edit Data</button>
+        </form>
+      </div>
+
+      <!-- FOOTER SECTION -->
+    <footer class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-4 col-md-6 col-sm-12">
+              <div class="content">
+                <a href="#" class="logo">
+                  <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span
+                    class="main-color"
+                    >i</span
+                  >x
+                </a>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
+                  veniam ex quos hic id nobis beatae earum sapiente! Quod ipsa
+                  exercitationem officiis non error illum minima iusto et.
+                  Dolores, quibusdam?
+                </p>
+                <div class="social-list">
+                  <a href="#" class="social-item">
+                    <i class="bx bxl-facebook"></i>
+                  </a>
+                  <a href="#" class="social-item">
+                    <i class="bx bxl-twitter"></i>
+                  </a>
+                  <a href="#" class="social-item">
+                    <i class="bx bxl-instagram"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-8 col-md-6 col-sm-12">
+              <div class="row">
+                <div class="col-3 col-md-6 col-sm-6">
+                  <div class="content">
+                    <p><b>Flix</b></p>
+                    <ul class="footer-menu">
+                      <li><a href="#">About us</a></li>
+                      <li><a href="#">My profile</a></li>
+                      <li><a href="#">Pricing plans</a></li>
+                      <li><a href="#">Contacts</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-3 col-md-6 col-sm-6">
+                  <div class="content">
+                    <p><b>Browse</b></p>
+                    <ul class="footer-menu">
+                      <li><a href="#">About us</a></li>
+                      <li><a href="#">My profile</a></li>
+                      <li><a href="#">Pricing plans</a></li>
+                      <li><a href="#">Contacts</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-3 col-md-6 col-sm-6">
+                  <div class="content">
+                    <p><b>Help</b></p>
+                    <ul class="footer-menu">
+                      <li><a href="#">About us</a></li>
+                      <li><a href="#">My profile</a></li>
+                      <li><a href="#">Pricing plans</a></li>
+                      <li><a href="#">Contacts</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-3 col-md-6 col-sm-6">
+                  <div class="content">
+                    <p><b>Download app</b></p>
+                    <ul class="footer-menu">
+                      <li>
+                        <a href="#">
+                          <img src="./images/google-play.png" alt="" />
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img src="./images/app-store.png" alt="" />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- END FOOTER SECTION -->
+      <script>
+        let nav_auth = document.getElementById("nav-auth");
+        if(localStorage.getItem("user")!=null && JSON.parse(localStorage.getItem("user")).status == true){
+        nav_auth.innerHTML = `<a href="profile.html" class="btn btn-hover">
+        <span>Profile</span></a>
+        
+        <p href="profile.html" class="btn-danger btn-danger-hover" id="logout">
+        <span>Logout</span></p>`;
+        }
+        
+        let logout_nav = document.getElementById("logout");
+
+        logout_nav.addEventListener("click", function(){
+          localStorage.clear();
+          window.location.assign("http://127.0.0.1:5500/index.html");
+        });
+
+        let username = document.getElementById("username");
+        let profile_image = document.getElementById("profile-image");
+        username.innerHTML = `@${JSON.parse(localStorage.getItem("user")).username}`;
+        profile_image.src = "./images/profile-user.png";
+
+        let logout_profile = document.querySelector(".logout");
+        logout_profile.addEventListener("click", function(){
+          localStorage.clear();
+          window.location.assign("http://127.0.0.1:5500/index.html");
+        });
+
+        let username_form = document.getElementById("username-form");
+        let password_form = document.getElementById("password-form");
+        let confirm_password_form = document.getElementById("confirm_password_form");
+        let image_form = document.getElementById("image_form");
+        let country = document.getElementById("country");
+        let date_of_birth = document.getElementById("date_of_birth");
+
+        username_form.value = JSON.parse(localStorage.getItem("user")).username;
+        password_form.value = JSON.parse(localStorage.getItem("user")).password;
+        confirm_password_form.value = JSON.parse(localStorage.getItem("user")).password;
+
+        let submit_data_form = document.getElementById("submit-data-form");
+
+        let edited_data = {
+          "username": username_form.value,
+          "password": password_form.value,
+          "country": country.value,
+          "date_of_birth": date_of_birth.value,
+          "image": image_form.value
+        };
+
+        submit_data_form.addEventListener("click", function(event){
+          localStorage.setItem("user", JSON.stringify(edited_data));
+          window.location.href("http://127.0.0.1:5500/profile.html");
+        });
+      </script>
+</body>
+</html>

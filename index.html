@@ -46,9 +46,9 @@
             <li><a href="#">Movies</a></li>
             <li><a href="#">Series</a></li>
             <li><a href="#">About</a></li>
-            <li>
-              <a href="./signIn.html" class="btn btn-hover">
-                <span>Sign in</span>
+            <li id="nav-auth">
+              <a href="./Authentication/SignUp.html" class="btn btn-hover">
+                <span>Sign Up</span>
               </a>
             </li>
           </ul>
@@ -799,80 +799,6 @@
     </div>
     <!-- END SPECIAL MOVIE SECTION -->
 
-    <!-- PRICING SECTION -->
-    <div class="section">
-      <div class="container">
-        <div class="pricing">
-          <div class="pricing-header">
-            Fl<span class="main-color">i</span>x pricing
-          </div>
-          <div class="pricing-list">
-            <div class="row">
-              <div class="col-4 col-md-12 col-sm-12">
-                <div class="pricing-box">
-                  <div class="pricing-box-header">
-                    <div class="pricing-name">Basic</div>
-                    <div class="pricing-price">Free</div>
-                  </div>
-                  <div class="pricing-box-content">
-                    <p>Originals</p>
-                    <p>Swich plans anytime</p>
-                    <p><del>65+ top Live</del></p>
-                    <p><del>TV Channels</del></p>
-                    <p><del>4K Video Quality</del></p>
-                  </div>
-                  <div class="pricing-box-action">
-                    <a href="#" class="btn btn-hover">
-                      <span>Register now</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4 col-md-12 col-sm-12">
-                <div class="pricing-box hightlight">
-                  <div class="pricing-box-header">
-                    <div class="pricing-name">Premium</div>
-                    <div class="pricing-price">$15.99 <span>/month</span></div>
-                  </div>
-                  <div class="pricing-box-content">
-                    <p>Originals</p>
-                    <p>Swich plans anytime</p>
-                    <p>Full HD Video Quality</p>
-                    <p>65+ top Live</p>
-                    <p><del>TV Channels</del></p>
-                  </div>
-                  <div class="pricing-box-action">
-                    <a href="#" class="btn btn-hover">
-                      <span>Register now</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4 col-md-12 col-sm-12">
-                <div class="pricing-box">
-                  <div class="pricing-box-header">
-                    <div class="pricing-name">VIP</div>
-                    <div class="pricing-price">$35.99 <span>/month</span></div>
-                  </div>
-                  <div class="pricing-box-content">
-                    <p>Originals</p>
-                    <p>Swich plans anytime</p>
-                    <p>65+ top Live</p>
-                    <p>TV Channels</p>
-                    <p>4K Video Quality</p>
-                  </div>
-                  <div class="pricing-box-action">
-                    <a href="#" class="btn btn-hover">
-                      <span>Register now</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- END PRICING SECTION -->
 
     <!-- FOOTER SECTION -->
@@ -986,5 +912,23 @@
     <!-- APP SCRIPT -->
     <script src="app.js"></script>
     <script src="slideMovie.js"></script>
+    <script>
+      let nav_auth = document.getElementById("nav-auth");
+      
+      if(localStorage.getItem("user")!=null && JSON.parse(localStorage.getItem("user")).status == true){
+        nav_auth.innerHTML = `<a href="profile.html" class="btn btn-hover">
+        <span>Profile</span></a>
+        
+        <p href="profile.html" class="btn-danger btn-danger-hover" id="logout">
+        <span>Logout</span></p>`;
+      }
+
+      let logout = document.getElementById("logout");
+
+      logout.addEventListener("click", function(){
+        localStorage.clear();
+        window.location.assign("http://127.0.0.1:5500/index.html");
+      });
+    </script>
   </body>
 </html>
