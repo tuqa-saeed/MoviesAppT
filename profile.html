@@ -26,8 +26,8 @@
       .main{
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
+        align-items: center;
         margin-top: 50px;
       }
 
@@ -50,7 +50,7 @@
         border: 1px solid transparent;
         transition: .5s;
         cursor: pointer;
-        margin: 10px 0;
+        margin: 20px 0;
         background-color: white;
         color: #1f83ed;
       }
@@ -110,11 +110,42 @@
       }
 
       .user-data{
-        padding: 0 100px;
+        padding: 0 50px;
+        margin-top: 50px;
       }
 
       #username{
         margin-bottom: 10px;
+      }
+
+      .faviorite-data{
+        padding: 0 50px;
+      }
+
+      .cards-container{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .card{
+        border: 1px solid var(--main-color);
+      }
+
+      .card a h2{
+        padding: 10px;
+      }
+
+      @media (max-width: 920px){
+        .cards-container{
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 450px){
+        .cards-container{
+          grid-template-columns: repeat(1, 1fr);
+        }
       }
     </style>
 </head>
@@ -130,7 +161,7 @@
               >
             </a>
             <ul class="nav-menu" id="nav-menu">
-              <li><a href="#">Home</a></li>
+              <li><a href="/">Home</a></li>
               <li><a href="#">Genre</a></li>
               <li><a href="#">Movies</a></li>
               <li><a href="#">Series</a></li>
@@ -158,6 +189,7 @@
           <a href="#edit-form" class="edit-btn"><i class="fa-solid fa-pen-to-square"></i> Edit profile Data</a>
           <button class="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
         </div>
+
         <form class="user-data" id="edit-form">
           <h2>Edit User Data Form</h2>
           <hr style="margin: 10px 0;">
@@ -182,9 +214,17 @@
           <button type="submit" id="submit-data-form">Edit Data</button>
         </form>
       </div>
+      <!-- Faviorite Movies & Serieses-->
+      <div class="faviorite-data">
+        <h2>Faviorite Movies</h2>
+        <hr style="margin: 10px 0;">
+        <div class="cards-container" id="cards-container">
+
+        </div>
+      </div>
 
       <!-- FOOTER SECTION -->
-    <footer class="section">
+      <footer class="section">
         <div class="container">
           <div class="row">
             <div class="col-4 col-md-6 col-sm-12">
@@ -249,23 +289,6 @@
                     </ul>
                   </div>
                 </div>
-                <div class="col-3 col-md-6 col-sm-6">
-                  <div class="content">
-                    <p><b>Download app</b></p>
-                    <ul class="footer-menu">
-                      <li>
-                        <a href="#">
-                          <img src="./images/google-play.png" alt="" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img src="./images/app-store.png" alt="" />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -325,6 +348,35 @@
           localStorage.setItem("user", JSON.stringify(edited_data));
           window.location.href("http://127.0.0.1:5500/profile.html");
         });
-      </script>
+
+        // Faviorite Movies
+        let cards_container = document.getElementById("cards-container");
+        if(JSON.parse(localStorage.favorites).length != 0){
+          JSON.parse(localStorage.favorites).forEach(element => {
+            const options = {
+              method: "GET",
+              headers: {
+                accept: "application/json",
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjU2MTA2YzQzZWQ4YTE4MWY1NTQ1MWQyNzE1N2IwNSIsIm5iZiI6MTY1Mzc1MzI3Ni42NTEsInN1YiI6IjYyOTI0NWJjNWE0NjkwMDA5ZTQ1YzYyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJVNpdz4E-lTr5XxqqUpbVkVRufZ_llITMvAPxrtxFw", // Replace with your actual TMDB API key
+              },
+            };
+            fetch(`https://api.themoviedb.org/3/movie/${element}?language=en-US`, options)
+            .then((response) => response.json())
+            .then((data) => {
+              cards_container.innerHTML += 
+              `
+              <div class="card">
+                <img src="https://image.tmdb.org/t/p/w300${data.poster_path}" id="movie-banner" width="200px" alt="movie title">
+                <a href="movie-details.html?id=${element}"><h2>${data.title}</h2></a>
+              </div>  
+            `;
+            })
+            .catch((error) => console.error("Error fetching movie details:", error));
+            
+          });
+        }
+        
+</script>
 </body>
 </html>

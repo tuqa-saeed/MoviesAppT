@@ -323,5 +323,19 @@
     <!-- APP SCRIPT -->
     <script src="app.js"></script>
     <script src="mainPage.js"></script>
+    <!-- Manual Conditional Render for Authentication-->
+    <script>
+      const navAuth = document.getElementById("nav-auth");
+      const user = localStorage.getItem("user");
+      if (user) {
+        navAuth.innerHTML = `<a href="Profile.html" class="btn btn-hover">
+                <span>Profile</span>
+              </a>`;
+      } else {
+        navAuth.innerHTML = `<a href="./Authentication/SignUp.html" class="btn btn-hover">
+                <span>Sign Up</span>
+              </a>`;
+      }
+    </script>
   </body>
 </html>

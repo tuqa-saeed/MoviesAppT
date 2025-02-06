@@ -39,11 +39,16 @@
             >x
           </a>
           <ul class="nav-menu" id="nav-menu">
-            <li><a href="#">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#">Genre</a></li>
             <li><a href="#">Movies</a></li>
             <li><a href="#">Series</a></li>
             <li><a href="#">About</a></li>
+            <li id="nav-auth">
+              <a href="./Authentication/SignUp.html" class="btn btn-hover">
+                <span>Sign Up</span>
+              </a>
+            </li>
           </ul>
           <div class="hamburger-menu" id="hamburger-menu">
             <div class="hamburger"></div>
@@ -105,5 +110,19 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="movieDetailsPage.js"></script>
+
+    <script>
+      const navAuth = document.getElementById("nav-auth");
+      const user = localStorage.getItem("user");
+      if (user) {
+        navAuth.innerHTML = `<a href="Profile.html" class="btn btn-hover">
+                <span>Profile</span>
+              </a>`;
+      } else {
+        navAuth.innerHTML = `<a href="./Authentication/SignUp.html" class="btn btn-hover">
+                <span>Sign Up</span>
+              </a>`;
+      }
+    </script>
   </body>
 </html>
