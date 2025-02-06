@@ -2,26 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" type="x-icon" href="./images/movie-logo.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flix - Search</title>
+    <title>Flix - Movie Search</title>
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="./images/movie-logo.png"
+    />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
       rel="stylesheet"
     />
-    <!-- CSS for layout and styles -->
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="searchPage.css" />
   </head>
   <body>
     <!-- Navigation -->
-    <div class="nav-wrapper">
+    <header class="nav-wrapper">
       <div class="container">
-        <div class="nav">
-          <a href="#" class="logo">
+        <nav class="nav">
+          <a href="#" class="logo" aria-label="Flix Home">
             <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span
               class="main-color"
               >i</span
@@ -34,32 +42,35 @@
             <li><a href="#">Series</a></li>
             <li><a href="#">About</a></li>
           </ul>
-        </div>
+        </nav>
       </div>
-    </div>
+    </header>
 
     <!-- Search Section -->
-    <div class="search-container">
+    <section class="search-container">
       <div class="container">
-        <h2>Search Movies</h2>
-        <input
-          type="text"
-          id="search-input"
-          class="search-box"
-          placeholder="Search for a movie..."
-        />
-        <button id="search-btn">Search</button>
-        <select id="category-filter">
+        <h2>Find Your Favorite Movies</h2>
+        <div class="search-box-wrapper">
+          <input
+            type="text"
+            id="search-input"
+            class="search-box"
+            placeholder="Search for a movie..."
+            aria-label="Search movies"
+          />
+          <button id="search-btn" aria-label="Search">Search</button>
+        </div>
+        <select id="category-filter" aria-label="Filter by category">
           <option value="">All Categories</option>
         </select>
       </div>
-    </div>
+    </section>
 
     <!-- Movie Results -->
-    <div class="search-results container">
-      <h2>Popular Movies</h2>
+    <section class="search-results container">
+      <h1 class="text-center">Trending Now</h1>
       <div id="movie-results"></div>
-    </div>
+    </section>
 
     <!-- Scripts -->
     <script src="searchPage.js"></script>

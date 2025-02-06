@@ -33,7 +33,7 @@ const fetchMovies = async () => {
   isLoading = true;
 
   // Determine the correct URL based on search and category
-  let url = `${API_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${currentPage}`;
+  let url = `${API_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${currentPage}`;
 
   if (query.trim() !== "") {
     url = `${API_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(
@@ -85,7 +85,7 @@ const displayMovies = (movies) => {
 const handleScroll = () => {
   if (
     window.innerHeight + window.scrollY >=
-    document.documentElement.scrollHeight - 100
+    document.documentElement.scrollHeight - 20
   ) {
     fetchMovies();
   }
@@ -121,3 +121,4 @@ fetchMovies();
 
 // Add scroll event listener
 window.addEventListener("scroll", handleScroll);
+(print) => console.log("hello");

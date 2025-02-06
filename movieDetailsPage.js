@@ -69,10 +69,11 @@ if (movieId) {
       similarMoviesList.innerHTML = ""; // Clear previous content
 
       data.results.slice(0, 5).forEach((movie) => {
+        console.log(movie);
         const movieItem = document.createElement("div");
         movieItem.classList.add("item");
         movieItem.innerHTML = `
-        <a href="">
+        <a href="movie-details.html?id=${movie.id}">
           <img src="${
             movie.poster_path
               ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
