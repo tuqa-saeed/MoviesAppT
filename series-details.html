@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" type="x-icon" href="./images/movie-logo.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flix - Series Details</title>
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- OWL CAROUSEL -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <!-- BOX ICONS -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- APP CSS -->
+    <link rel="stylesheet" href="grid.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="movie-details.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <div class="nav-wrapper">
+      <div class="container">
+        <div class="nav">
+          <a href="#" class="logo">
+            <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span
+              class="main-color"
+              >i</span
+            >x
+          </a>
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Genre</a></li>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">Series</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+          <div class="hamburger-menu" id="hamburger-menu">
+            <div class="hamburger"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Series Details Section -->
+    <div class="movie-details-container row">
+      <img id="movie-banner" class="col-6" src="" alt="Series Banner" />
+      <div class="movie-content col-6">
+        <h1 id="movie-title">Series Details</h1>
+        <p id="movie-category" class="movie-category"></p>
+        <p id="movie-description"></p>
+        <p><strong>First Air Date:</strong> <span id="release-date"></span></p>
+        <p><strong>Rating:</strong> <span id="rating"></span>/10</p>
+        <p><strong>Episode Runtime:</strong> <span id="runtime"></span> mins</p>
+        <p>
+          <strong>Production Companies:</strong>
+          <span id="production-companies"></span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Trailer Section -->
+    <div class="trailer-container">
+      <h2>Trailer</h2>
+      <iframe
+        id="movie-trailer"
+        width="100%"
+        height="400"
+        src=""
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <!-- Cast & Crew Section -->
+    <div class="cast-container">
+      <h2>Cast & Crew</h2>
+      <div id="cast-list" class="row"></div>
+    </div>
+
+    <!-- Similar Series Section -->
+    <div class="similar-movies">
+      <h2>Similar Series</h2>
+      <div class="owl-carousel" id="similar-movies-list"></div>
+    </div>
+
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="seriesDetailsPage.js"></script>
+  </body>
+</html>
