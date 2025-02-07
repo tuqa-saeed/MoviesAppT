@@ -72,7 +72,7 @@ if (movieId) {
         const movieItem = document.createElement("div");
         movieItem.classList.add("item");
         movieItem.innerHTML = `
-        <a href="">
+        <a href="movie-details.html?id=${movie.id}">
           <img src="${
             movie.poster_path
               ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
@@ -118,7 +118,7 @@ if (movieId) {
 // Handle Favorite Button Click
 document.addEventListener("DOMContentLoaded", () => {
   const favoriteBtn = document.getElementById("favorite-btn");
-
+  const loggeduser = localStorage.loggedInUser;
   // Ensure the button exists before adding event listeners
   if (!favoriteBtn) {
     console.error("Favorite button not found!");
@@ -140,19 +140,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle Favorite Button Click
   favoriteBtn.addEventListener("click", () => {
-    if (favorites.includes(movieId)) {
-      // Remove from favorites
-      favorites = favorites.filter((id) => id !== movieId);
-      favoriteBtn.classList.remove("favorited");
-      favoriteBtn.innerHTML = '<i class="bx bx-heart"></i>'; // Empty heart icon
-    } else {
-      // Add to favorites
-      favorites.push(movieId);
-      favoriteBtn.classList.add("favorited");
-      favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
+    if(loggeduser!=null){
+      if (favorites.includes(movieId)) {
+        // Remove from favorites
+        favorites = favorites.filter((id) => id !== movieId);
+        favoriteBtn.classList.remove("favorited");
+        favoriteBtn.innerHTML = '<i class="bx bx-heart"></i>'; // Empty heart icon
+      } else {
+        // Add to favorites
+        favorites.push(movieId);
+        favoriteBtn.classList.add("favorited");
+        favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
+      }
+      // Save to localStorage
+      localStorage.setItem("favorites", JSON.stringify(favorites));
     }
-
-    // Save to localStorage
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    else{
+      window.location.assign("/Authentication/SignIn.html");
+    }
   });
 });

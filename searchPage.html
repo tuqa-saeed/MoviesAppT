@@ -28,11 +28,16 @@
             >x
           </a>
           <ul class="nav-menu">
-            <li><a href="#">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#">Genre</a></li>
             <li><a href="#">Movies</a></li>
             <li><a href="#">Series</a></li>
             <li><a href="#">About</a></li>
+            <li id="nav-auth">
+              <a href="authentication/signup.html" class="btn btn-hover">
+                <span>Sign Up</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -63,5 +68,25 @@
 
     <!-- Scripts -->
     <script src="searchPage.js"></script>
+    <script>
+      const navAuth = document.getElementById("nav-auth");
+      const loggedUser = JSON.parse(localStorage.loggedInUser);
+
+      if (loggedUser && loggedUser.status) {
+        navAuth.innerHTML = `
+          <a href="profile.html" class="btn btn-hover">
+            <span>Profile</span>
+          </a>
+          <button id="logout" class="btn-danger btn-danger-hover">
+            <span>Logout</span>
+          </button>
+        `;
+
+        document.getElementById("logout").addEventListener("click", function () {
+          localStorage.removeItem("loggedInUser");
+          window.location.href = "index.html"; // Ensure it works for all environments
+        });
+      }
+    </script>
   </body>
 </html>

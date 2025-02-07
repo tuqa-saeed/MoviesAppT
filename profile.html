@@ -44,17 +44,6 @@
         border-color: var(--main-color);
       }
 
-      .edit-btn, .logout{
-        padding: 10px 20px;
-        border-radius: 20px;
-        border: 1px solid transparent;
-        transition: .5s;
-        cursor: pointer;
-        margin: 20px 0;
-        background-color: white;
-        color: #1f83ed;
-      }
-
       #submit-data-form{
         padding: 10px 20px;
         border-radius: 20px;
@@ -73,26 +62,13 @@
         border-color: var(--main-color);
       }
 
-      .edit-btn:hover{
-        background-color: transparent;
-        color: var(--main-color);
-        border-color: var(--main-color);
-      }
-
-      .logout{
-        background-color: var(--main-color);
-        color: var(--text-color);
-        margin: 0 10px;
-      }
-
-      .logout:hover{
-        background-color: transparent;
-        color: var(--main-color);
-        border-color: var(--main-color);
-      } 
-
       .faviorite-data{
         margin: 20px 0;
+        padding: 0 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
       }
 
       input {
@@ -116,10 +92,6 @@
 
       #username{
         margin-bottom: 10px;
-      }
-
-      .faviorite-data{
-        padding: 0 50px;
       }
 
       .cards-container{
@@ -167,9 +139,7 @@
               <li><a href="#">Series</a></li>
               <li><a href="#">About</a></li>
               <li id="nav-auth">
-                <a href="./Authentication/SignUp.html" class="btn btn-hover">
-                  <span>Sign Up</span>
-                </a>
+                
               </li>
             </ul>
             <!-- MOBILE MENU TOGGLE -->
@@ -186,8 +156,6 @@
         <img src="#" id="profile-image" class="profile-image" alt="profile image">
         <div class="profile-data">
           <h1 id="username"></h1>
-          <a href="#edit-form" class="edit-btn"><i class="fa-solid fa-pen-to-square"></i> Edit profile Data</a>
-          <button class="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
         </div>
 
         <form class="user-data" id="edit-form">
@@ -195,6 +163,9 @@
           <hr style="margin: 10px 0;">
           <label for="username">Username</label>
           <input type="text" name="username" id="username-form" required>
+
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email-form" required>
           
           <label for="password">Password</label>
           <input type="password" name="password" id="password-form" required>
@@ -202,22 +173,13 @@
           <label for="confirm_password_form">Confirm Password</label>
           <input type="password" name="confirm_password_form" id="confirm_password_form" required>
           
-          <label for="image_form">Profile Picture</label>
-          <input type="file" name="image_form" id="image_form">
-          
-          <label for="country">Country</label>
-          <input type="text" name="country" id="country" placeholder="Country Name">
-          
-          <label for="date-of-birth">Date of birth</label>
-          <input type="date" name="date-of-birth" id="date_of_birth">
-
           <button type="submit" id="submit-data-form">Edit Data</button>
         </form>
       </div>
       <!-- Faviorite Movies & Serieses-->
       <div class="faviorite-data">
         <h2>Faviorite Movies</h2>
-        <hr style="margin: 10px 0;">
+        <hr style="margin: 10px 0; width: 100%;">
         <div class="cards-container" id="cards-container">
 
         </div>
@@ -296,58 +258,93 @@
       </footer>
       <!-- END FOOTER SECTION -->
       <script>
-        let nav_auth = document.getElementById("nav-auth");
-        if(localStorage.getItem("user")!=null && JSON.parse(localStorage.getItem("user")).status == true){
-        nav_auth.innerHTML = `<a href="profile.html" class="btn btn-hover">
-        <span>Profile</span></a>
-        
-        <p href="profile.html" class="btn-danger btn-danger-hover" id="logout">
-        <span>Logout</span></p>`;
+        const navAuth = document.getElementById("nav-auth");
+        const loggedUser = JSON.parse(localStorage.loggedInUser);
+
+        if (loggedUser && loggedUser.status) {
+          navAuth.innerHTML = `
+            <a href="profile.html" class="btn btn-hover">
+              <span>Profile</span>
+            </a>
+            <button id="logout" class="btn-danger btn-danger-hover">
+              <span>Logout</span>
+            </button>
+          `;
+
+          document.getElementById("logout").addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "index.html"; // Ensure it works for all environments
+          });
         }
-        
-        let logout_nav = document.getElementById("logout");
 
-        logout_nav.addEventListener("click", function(){
-          localStorage.clear();
-          window.location.assign("http://127.0.0.1:5500/index.html");
+        document.addEventListener("DOMContentLoaded", function () {
+          const userData = JSON.parse(localStorage.getItem("loggedInUser"));
+
+          if (!userData) {
+            alert("No user data found! Please log in.");
+            window.location.href = "index.html"; // Redirect if no user is logged in
+            return;
+          }
+
+          // Display user info
+          const username = document.getElementById("username");
+          const profileImage = document.getElementById("profile-image");
+          username.innerHTML = `@${userData.username}`;
+          profileImage.src = userData.profileImage || "./images/profile-user.png";
+
+          // Form fields
+          const usernameForm = document.getElementById("username-form");
+          const emailForm = document.getElementById("email-form");
+          const passwordForm = document.getElementById("password-form");
+          const confirmPasswordForm = document.getElementById("confirm_password_form");
+          const editForm = document.getElementById("edit-form");
+
+          // Pre-fill user data
+          usernameForm.value = userData.username;
+          emailForm.value = userData.email;
+          passwordForm.value = userData.password;
+          confirmPasswordForm.value = userData.password;
+
+          // Handle form submission
+          editForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Get updated values inside the event listener
+            const updatedUsername = usernameForm.value.trim();
+            const updatedEmail = emailForm.value.trim();
+            const updatedPassword = passwordForm.value.trim();
+            const confirmedPassword = confirmPasswordForm.value.trim();
+
+            // Validate passwords match
+            if (updatedPassword !== confirmedPassword) {
+              alert("Passwords do not match!");
+              return;
+            }
+
+            // Create updated user object
+            const updatedUserData = {
+              username: updatedUsername,
+              email: updatedEmail,
+              password: updatedPassword, // Now properly updated
+              status: true,
+              profileImage: userData.profileImage || "./images/profile-user.png",
+            };
+
+            // Update in localStorage
+            localStorage.setItem("loggedInUser", JSON.stringify(updatedUserData));
+
+            // Update users list in localStorage
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            users = users.map((user) =>
+              user.username === userData.username ? updatedUserData : user
+            );
+            localStorage.setItem("users", JSON.stringify(users));
+
+            alert("Profile updated successfully!");
+            window.location.href = "profile.html"; // Redirect back to profile page
+          });
         });
 
-        let username = document.getElementById("username");
-        let profile_image = document.getElementById("profile-image");
-        username.innerHTML = `@${JSON.parse(localStorage.getItem("user")).username}`;
-        profile_image.src = "./images/profile-user.png";
-
-        let logout_profile = document.querySelector(".logout");
-        logout_profile.addEventListener("click", function(){
-          localStorage.clear();
-          window.location.assign("http://127.0.0.1:5500/index.html");
-        });
-
-        let username_form = document.getElementById("username-form");
-        let password_form = document.getElementById("password-form");
-        let confirm_password_form = document.getElementById("confirm_password_form");
-        let image_form = document.getElementById("image_form");
-        let country = document.getElementById("country");
-        let date_of_birth = document.getElementById("date_of_birth");
-
-        username_form.value = JSON.parse(localStorage.getItem("user")).username;
-        password_form.value = JSON.parse(localStorage.getItem("user")).password;
-        confirm_password_form.value = JSON.parse(localStorage.getItem("user")).password;
-
-        let submit_data_form = document.getElementById("submit-data-form");
-
-        let edited_data = {
-          "username": username_form.value,
-          "password": password_form.value,
-          "country": country.value,
-          "date_of_birth": date_of_birth.value,
-          "image": image_form.value
-        };
-
-        submit_data_form.addEventListener("click", function(event){
-          localStorage.setItem("user", JSON.stringify(edited_data));
-          window.location.href("http://127.0.0.1:5500/profile.html");
-        });
 
         // Faviorite Movies
         let cards_container = document.getElementById("cards-container");
@@ -373,7 +370,6 @@
             `;
             })
             .catch((error) => console.error("Error fetching movie details:", error));
-            
           });
         }
         

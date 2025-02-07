@@ -6,6 +6,19 @@
     <title>Sign In</title>
 
     <style>
+      * {
+        list-style: none;
+      }
+
+      i {
+        color: red;
+        margin-right: 5px;
+      }
+
+      ul {
+        padding-left: 0;
+      }
+
       :root {
         --main-color: #1f83ed;
         --body-bg: #181616;
@@ -14,6 +27,7 @@
         --nav-height: 60px;
         --space-top: 30px;
       }
+
       body {
         font-family: Arial, sans-serif;
         display: flex;
@@ -23,40 +37,43 @@
         margin: 0;
         background-color: var(--body-bg);
       }
+
       .container {
         display: flex;
-        background: var(--text-color);
+        flex-direction: column;
+        align-items: center;
+        background: #fff;
         border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 50px;
+        width: 400px;
         max-width: 90%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
-      .login-box {
-        padding: 40px;
-      }
+
       .logo {
         font-size: 24px;
         color: var(--main-color);
       }
+
       h2 {
         margin: 10px 0;
         font-size: 22px;
       }
-      p {
+
+      p,
+      li {
         color: #666;
         font-size: 14px;
       }
+
       input {
-        width: 100%;
+        width: 95%;
         padding: 10px;
         margin: 10px 0;
         border: 1px solid #ddd;
         border-radius: 5px;
       }
-      .options {
-        display: flex;
-        justify-content: space-between;
-        font-size: 14px;
-      }
+
       .btn {
         width: 100%;
         padding: 10px;
@@ -64,37 +81,20 @@
         border: none;
         border-radius: 5px;
         background: var(--main-color);
-        color: var(--text-color);
+        color: #fff;
         cursor: pointer;
       }
-      
-      .image-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-        gap: 5px;
-        width: 250px;
-        background: #ddd;
-      }
-      .image {
-        background: #999;
-        height: 100px;
-      }
 
-      .image-grid{
-        background: url(../images/black-banner.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 50%;
+      #login-error {
+        color: red;
+        margin-left: 10px;
+        display: none;
       }
 
       @media (max-width: 768px) {
         .container {
           flex-direction: column;
           width: 90%;
-        }
-        .image-grid {
-          display: none;
         }
       }
     </style>
@@ -109,48 +109,52 @@
           all streaming services worldwide.
         </p>
         <form id="form">
+          <p id="login-error">
+            <i class="fa-solid fa-triangle-exclamation"></i> Invalid email or password
+          </p>
           <input type="email" placeholder="Email" id="login-email" required />
           <input type="password" placeholder="Password" id="login-password" required />
           <button type="submit" id="login-btn" class="btn">Sign in</button>
         </form>
-        <p>New to (app name)? <a href="signup.html">Sign Up</a></p>
-      </div>
-      
-      <div class="image-grid">
+        <p>New to Movies App? <a href="signup.html">Sign Up</a></p>
       </div>
     </div>
 
     <script>
-      let login_email = document.getElementById("login-email");
-      let login_password = document.getElementById("login-password");
-      let login_btn = document.getElementById("login-btn");
+      let loginEmail = document.getElementById("login-email");
+      let loginPassword = document.getElementById("login-password");
+      let loginError = document.getElementById("login-error");
       let form = document.getElementById("form");
-      let user = JSON.parse(localStorage.getItem("user"));
-      
-      form.addEventListener("submit", function(e){
+
+      form.addEventListener("submit", function (e) {
         e.preventDefault();
-      });
 
-      login_btn.addEventListener("click", function(){
-        if(user!=null){
-          if(user.email === login_email.value && user.password === login_password.value){
-            let localStorageObject = {
-              "email" : user.email,
-              "password" : user.password,
-              "username" : user.username,
-              "status" : true,
-              "profileImage" : "./images/profile-user.png"
-            };
+        // Retrieve users list from localStorage
+        let users = JSON.parse(localStorage.getItem("users")) || [];
 
-            localStorage.setItem("user", JSON.stringify(localStorageObject));
-            
-            window.location.assign("http://127.0.0.1:5500/index.html");
-          }
-          else
-            window.alert("Login failed");
-        }
-        else{
-          alert("sign up please");
+        // Find the user
+        let foundUser = users.find(
+          (user) => user.email === loginEmail.value && user.password === loginPassword.value
+        );
+
+        if (foundUser) {
+          // Store logged-in user info
+          localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify({
+              username: foundUser.username,
+              email: foundUser.email,
+              profileImage: foundUser.profileImage,
+              status: true,
+              favioites: []
+            })
+          );
+
+          // Redirect to the homepage
+          window.location.assign("http://127.0.0.1:5500/index.html");
+        } else {
+          // Show error message
+          loginError.style.display = "block";
         }
       });
     </script>

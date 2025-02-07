@@ -38,11 +38,13 @@
       }
       .container {
         display: flex;
+        flex-direction: column;
         background: #fff;
         border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 50px;
+        width: 400px;
         max-width: 90%;
-        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
       .login-box {
         padding: 40px;
@@ -60,17 +62,19 @@
         font-size: 14px;
       }
       input {
-        width: 90%;
+        width: 95%;
         padding: 10px;
         margin: 10px 0;
         border: 1px solid #ddd;
         border-radius: 5px;
       }
+
       .options {
         display: flex;
         justify-content: space-between;
         font-size: 14px;
       }
+      
       .btn {
         width: 100%;
         padding: 10px;
@@ -82,114 +86,124 @@
         cursor: pointer;
       }
       
-      .image-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(4, 1fr);
-        gap: 5px;
-        width: 250px;
-        background: #ddd;
-      }
       .image {
         background: #999;
         height: 100px;
       }
 
-      .password-validation{
+      #password-validation{
         display: none;
       }
 
-      .image-grid{
-        background: url(../images/black-banner.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 50%;
+      #password-math-error{
+        color: red;
+        margin-left: 10px;
+        display: none;
       }
 
-      @media (max-width: 768px) {
-        .container {
-          flex-direction: column;
-          width: 90%;
-        }
-        .image-grid {
-          display: none;
-        }
+      #email-math-error{
+        color: red;
+        margin-left: 10px;
+        display: none;
       }
     </style>
   </head>
   <body>
     <div class="container">
-    <form id="form">
-        <div class="login-box">
-          <div class="logo">Movies App</div>
-          <h2>Welcome to Best movies platform</h2>
-          <p>
-            Minnow Insights provides advanced data of content and target groups on
-            all streaming services worldwide.
-          </p>
-          <form>
-            <input type="text" placeholder="Username" id="username" required />
-            <input type="email" placeholder="Email" id="email" required />
-            <input type="password" placeholder="Password" id="password" required />
-            <input type="password" placeholder="Confirm Password" id="confirm-password" required />
-            <button type="submit" id="submit-btn" class="btn">Sign Up</button>
-          </form>
-          
-          <div class="password-validation" id="password-validation">
-            <p>your password must contain :</p>
-            <ul>
-              <li><i class="fa-solid fa-circle-xmark"></i>At least 1 lower case</li>
-              <li><i class="fa-solid fa-circle-xmark"></i>At least 1 upper case</li>
-              <li><i class="fa-solid fa-circle-xmark"></i>At least 1 number</li>
-              <li><i class="fa-solid fa-circle-xmark"></i>At least 1 special character</li>
-            </ul>
-          </div>
-          
-          <p>Already have an account? <a href="signin.html">Login</a></p>
-        </div>
-        <div class="image-grid">
-          
-        </div>
+      <div class="logo">Movies App</div>
+      <h2>Welcome to Best movies platform</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam repudiandae consequuntur, quae ex consequatur modi.
+      </p>
+        
+      <form>
+        <input type="text" placeholder="Username" id="username" required />
+        <p id="email-math-error"><i class="fa-solid fa-triangle-exclamation"></i> email is already registerd</p>
+        <input type="email" placeholder="Email" id="email" required />
+        <p id="password-math-error"><i class="fa-solid fa-triangle-exclamation"></i> Passwords do not match!</p>
+        <input type="password" placeholder="Password" id="password" required />
+        <input type="password" placeholder="Confirm Password" id="confirm-password" required />
+        <button type="submit" id="submit-btn" class="btn">Sign Up</button>
+      </form>
+        
+      <div class="password-validation" id="password-validation">
+        <p>your password must contain :</p>
+        <ul>
+          <li><i class="fa-solid fa-circle-xmark"></i>At least 1 lower case</li>
+          <li><i class="fa-solid fa-circle-xmark"></i>At least 1 upper case</li>
+          <li><i class="fa-solid fa-circle-xmark"></i>At least 1 number</li>
+          <li><i class="fa-solid fa-circle-xmark"></i>At least 1 special character</li>
+        </ul>
       </div>
-    </form>
 
+      <p>Already have an account? <a href="signin.html">Login</a></p>
+    </div>
     <script>
       let username = document.getElementById("username");
       let email = document.getElementById("email");
       let password = document.getElementById("password");
       let confirm_password = document.getElementById("confirm-password");
       let submit_btn = document.getElementById("submit-btn");
-      let form = document.getElementById("form");
-      
-      submit_btn.addEventListener("click", function(event){
-        if(password.value !== confirm_password.value){
-          event.preventDefault();
-          return alert("Passwords do not match");
-        }
-
-        let password_validation = document.getElementById("password-validation");
-        
-        let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
-        if(!regex.test(password.value)){
-          event.preventDefault();
-          password_validation.style.display = "block";
-          return alert("Password must contain at least one uppercase letter, one lowercase letter, one number, one special character and must be between 8-15 characters");
-        }
-
-        let localStorageObject = {
-            "username" : username.value,
-            "email" : email.value,
-            "password" : password.value,
-            "status" : false,
-            "profileImage" : "./images/profile-user.png"
-        };
-
-        localStorage.setItem("user", JSON.stringify(localStorageObject));
-
-        alert("Account created successfully");
+      let form = document.querySelector("form");
+    
+      let password_validation = document.getElementById("password-validation");
+      let password_match_error = document.getElementById("password-math-error");
+      let email_match_error = document.getElementById("email-math-error");
+    
+      submit_btn.addEventListener("click", function (event) {
         event.preventDefault();
-        window.location.assign("http://127.0.0.1:5500/authentication/signin.html");
+    
+        // Hide previous error messages
+        password_match_error.style.display = "none";
+        email_match_error.style.display = "none";
+        password_validation.style.display = "none";
+    
+        let isValid = true;
+    
+        // Password match validation
+        if (password.value !== confirm_password.value) {
+          password_match_error.style.display = "block";
+          isValid = false;
+        }
+    
+        // Password complexity validation
+        let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
+        if (!regex.test(password.value)) {
+          password_validation.style.display = "block";
+          isValid = false;
+        }
+    
+        // Retrieve existing users from local storage
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+    
+        // Check if email already exists
+        let existingUser = users.find(u => u.email === email.value);
+        if (existingUser) {
+          email_match_error.style.display = "block";
+          isValid = false;
+        }
+    
+        // If any validation failed, stop execution
+        if (!isValid) return;
+    
+        // Create user object
+        let user = {
+          username: username.value,
+          email: email.value,
+          password: password.value,
+          status: false,
+          profileImage: "./images/profile-user.png",
+          favorites: []
+        };
+    
+        // Add new user and update local storage
+        users.push(user);
+        localStorage.setItem("users", JSON.stringify(users));
+    
+        // Redirect after successful registration
+        window.location.assign("signin.html");
       });
     </script>
+    
   </body> 
 </html>
