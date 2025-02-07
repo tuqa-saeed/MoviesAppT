@@ -18,7 +18,7 @@ fetch(
 
 // Fetch Top Movies
 fetch(
-  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
   options
 )
   .then((res) => res.json())
@@ -26,7 +26,10 @@ fetch(
   .catch((err) => handleError("hero-carousel", err));
 
 // Fetch Popular TV Series
-fetch("https://api.themoviedb.org/3/tv/popular?language=en-US&page=2", options)
+fetch(
+  "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=2",
+  options
+)
   .then((res) => res.json())
   .then((data) => displayTopTvSeries(data.results))
   .catch((err) => handleError("hero-carousel", err));
@@ -43,7 +46,7 @@ fetch(
  */
 function fetchCartoonMovies() {
   fetch(
-    "https://api.themoviedb.org/3/discover/movie?language=en-US&with_genres=16&page=1",
+    "https://api.themoviedb.org/3/discover/movie?language=en-US&with_genres=16&page=4",
     options
   )
     .then((res) => res.json())
@@ -368,7 +371,6 @@ function displayTopTvSeries(tvSeries) {
   tvCarousel.innerHTML = ""; // Clear any previous content
 
   tvSeries.forEach((series) => {
-    console.log(series);
     const seriesItem = document.createElement("div");
     seriesItem.classList.add("movie-item");
     const link = document.createElement("a");
@@ -560,7 +562,7 @@ fetch("https://api.themoviedb.org/3/trending/movie/day", options)
   .then((data) => {
     if (data.results && data.results.length > 0) {
       // Choose the first trending movie as the Movie of the Day
-      const movie = data.results[0];
+      const movie = data.results[5];
 
       // Fetch full movie details using the selected movie's id
       fetch(
