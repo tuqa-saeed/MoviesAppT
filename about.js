@@ -80,3 +80,20 @@ function toggleDescription(card, descriptionText) {
 teamData.forEach(member => {
     createTeamCard(member);
 });
+
+
+const text = "About Us";
+        let index = 0;
+
+        function typeEffect() {
+            if (index < text.length) {
+                document.getElementById("typing").textContent += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, 100); // التأخير بين الحروف (100 ملي ثانية)
+            }
+        }
+
+        // بدء تأثير الكتابة عند تحميل الصفحة
+        window.onload = typeEffect;
+
+
