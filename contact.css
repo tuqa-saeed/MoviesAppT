@@ -1,25 +1,4 @@
-:root {
-    --main-color: #1f83ed;
-    --body-bg: #181616;
-    --box-bg: #221f1f;
-    --text-color: #ffffff;
-    --nav-height: 60px;
-    --space-top: 30px;
-}
 
-* {
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-.body-b {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-    background-color: var(--body-bg);
-    color: var(--text-color);
-}
 
 .container-c {
     width: 100%;
