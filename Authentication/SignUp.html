@@ -41,6 +41,7 @@
       .container {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         background: #fff;
         border-radius: 10px;
         padding: 50px;
@@ -110,6 +111,12 @@
         display: none;
       }
 
+      #email-valid-error{
+        color: red;
+        margin-left: 10px;
+        display: none;
+      }
+
       @media(max-width: 500px){
         .container{
           border-radius: 0;
@@ -118,6 +125,7 @@
           width: 100%;
           height: 100%;
           max-width: 100%;
+          justify-content: start;
         }
       }
     </style>
@@ -132,7 +140,8 @@
         
       <form>
         <input type="text" placeholder="Username" id="username" required />
-        <p id="email-math-error"><i class="fa-solid fa-triangle-exclamation"></i> email is already registerd</p>
+        <p id="email-math-error"><i class="fa-solid fa-triangle-exclamation"></i> Email is already registerd</p>
+        <p id="email-valid-error"><i class="fa-solid fa-triangle-exclamation"></i> Email is not valid !</p>
         <input type="email" placeholder="Email" id="email" required />
         <p id="password-math-error"><i class="fa-solid fa-triangle-exclamation"></i> Passwords do not match!</p>
         <input type="password" placeholder="Password" id="password" required />
@@ -179,7 +188,20 @@
           password_match_error.style.display = "block";
           isValid = false;
         }
-    
+        
+        // Email Validation
+
+        const message = document.getElementById("email-valid-error");
+        
+        if (!validateEmail(email.value)) {
+          message.style.display = "block";
+        }
+        
+        function validateEmail(email) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+
         // Password complexity validation
         let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
         if (!regex.test(password.value)) {
