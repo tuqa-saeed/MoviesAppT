@@ -281,17 +281,18 @@
     <script src="app.js"></script>
     <script>
       const navAuth = document.getElementById("nav-auth");
-      const loggedUser = JSON.parse(localStorage.loggedInUser);
+      const storedUser = localStorage.getItem("loggedInUser");
+      const loggedUser = storedUser ? JSON.parse(storedUser) : null;
 
       if (loggedUser && loggedUser.status) {
         navAuth.innerHTML = `
-            <a href="profile.html" class="btn btn-hover">
-              <span>Profile</span>
-            </a>
-            <button id="logout" class="btn-danger btn-danger-hover">
-              <span>Logout</span>
-            </button>
-          `;
+        <a href="profile.html" class="btn btn-hover">
+          <span>Profile</span>
+        </a>
+        <button id="logout" class="btn-danger btn-danger-hover">
+          <span>Logout</span>
+        </button>
+      `;
 
         document
           .getElementById("logout")
@@ -302,19 +303,19 @@
       }
 
       document.addEventListener("DOMContentLoaded", function () {
-        const userData = JSON.parse(localStorage.getItem("loggedInUser"));
-
-        if (!userData) {
+        const storedUserData = localStorage.getItem("loggedInUser");
+        if (!storedUserData) {
           alert("No user data found! Please log in.");
           window.location.href = "index.html";
           return;
         }
 
+        const userData = JSON.parse(storedUserData);
+
         // Display user info
-        const username = document.getElementById("username");
-        const profileImage = document.getElementById("profile-image");
-        username.innerHTML = `@${userData.username}`;
-        profileImage.src = userData.profileImage || "./images/profile-user.png";
+        document.getElementById("username").innerHTML = `@${userData.username}`;
+        document.getElementById("profile-image").src =
+          userData.profileImage || "./images/profile-user.png";
 
         // Form fields
         const usernameForm = document.getElementById("username-form");
@@ -325,24 +326,19 @@
         );
         const editForm = document.getElementById("edit-form");
 
-        // Pre-fill user data
+        // Pre-fill user data (excluding password for security)
         usernameForm.value = userData.username;
         emailForm.value = userData.email;
-        passwordForm.value = userData.password;
-        confirmPasswordForm.value = userData.password;
 
-        // Handle form submission
         editForm.addEventListener("submit", function (event) {
           event.preventDefault();
 
-          // Get updated values inside the event listener
           const updatedUsername = usernameForm.value.trim();
           const updatedEmail = emailForm.value.trim();
           const updatedPassword = passwordForm.value.trim();
           const confirmedPassword = confirmPasswordForm.value.trim();
 
-          // Validate passwords match
-          if (updatedPassword !== confirmedPassword) {
+          if (updatedPassword && updatedPassword !== confirmedPassword) {
             let passwordMatch = document.getElementById("passwords-match");
             passwordMatch.style.display = "block";
 
@@ -357,12 +353,11 @@
           const updatedUserData = {
             username: updatedUsername,
             email: updatedEmail,
-            password: updatedPassword,
+            password: updatedPassword ? updatedPassword : userData.password, // Only update if changed
             status: true,
             profileImage: userData.profileImage || "./images/profile-user.png",
           };
 
-          // Update in localStorage
           localStorage.setItem("loggedInUser", JSON.stringify(updatedUserData));
 
           // Update users list in localStorage
@@ -377,43 +372,44 @@
 
           setTimeout(() => {
             successUpdate.style.display = "none";
+            window.location.href = "profile.html"; // Redirect after success message
           }, 3000);
-
-          return;
-
-          window.location.href = "profile.html"; // Redirect back to profile page
         });
       });
 
-      // Faviorite Movies
-      let cards_container = document.getElementById("cards-container");
-      if (JSON.parse(localStorage.favorites).length != 0) {
-        JSON.parse(localStorage.favorites).forEach((element) => {
-          const options = {
-            method: "GET",
-            headers: {
-              accept: "application/json",
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjU2MTA2YzQzZWQ4YTE4MWY1NTQ1MWQyNzE1N2IwNSIsIm5iZiI6MTY1Mzc1MzI3Ni42NTEsInN1YiI6IjYyOTI0NWJjNWE0NjkwMDA5ZTQ1YzYyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJVNpdz4E-lTr5XxqqUpbVkVRufZ_llITMvAPxrtxFw", // Replace with your actual TMDB API key
-            },
-          };
-          fetch(
-            `https://api.themoviedb.org/3/movie/${element}?language=en-US`,
-            options
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              cards_container.innerHTML += `
-              <div class="card">
-                <img src="https://image.tmdb.org/t/p/w300${data.poster_path}" id="movie-banner" width="200px" alt="movie title">
-                <a href="movie-details.html?id=${element}"><h2>${data.title}</h2></a>
-              </div>  
-            `;
-            })
-            .catch((error) =>
-              console.error("Error fetching movie details:", error)
-            );
-        });
+      // Favorite Movies
+      const cards_container = document.getElementById("cards-container");
+      const loggeduser = localStorage.getItem("loggedInUser");
+      const favoritesData = localStorage.getItem(`favorites_${loggeduser}`);
+
+      if (favoritesData) {
+        const favorites = JSON.parse(favoritesData);
+        if (favorites.length > 0) {
+          favorites.forEach((movieId) => {
+            fetch(
+              `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+              {
+                method: "GET",
+                headers: {
+                  accept: "application/json",
+                  Authorization:
+                    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjU2MTA2YzQzZWQ4YTE4MWY1NTQ1MWQyNzE1N2IwNSIsIm5iZiI6MTY1Mzc1MzI3Ni42NTEsInN1YiI6IjYyOTI0NWJjNWE0NjkwMDA5ZTQ1YzYyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJVNpdz4E-lTr5XxqqUpbVkVRufZ_llITMvAPxrtxFw",
+                },
+              }
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                cards_container.innerHTML += `
+            <div class="card">
+              <img src="https://image.tmdb.org/t/p/w300${data.poster_path}" id="movie-banner" width="200px" alt="movie title">
+              <a href="movie-details.html?id=${movieId}"><h2>${data.title}</h2></a>
+            </div>`;
+              })
+              .catch((error) =>
+                console.error("Error fetching movie details:", error)
+              );
+          });
+        }
       }
     </script>
   </body>
