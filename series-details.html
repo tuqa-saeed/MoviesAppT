@@ -33,17 +33,14 @@
       <div class="container">
         <div class="nav">
           <a href="#" class="logo">
-            <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span
-              class="main-color"
-              >i</span
-            >x
+            <img src="./images/logo.png" alt="moflix logo" />
           </a>
           <ul class="nav-menu" id="nav-menu">
             <li><a href="/">Home</a></li>
-            <li><a href="#">Genre</a></li>
-            <li><a href="#">Movies</a></li>
-            <li><a href="#">Series</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="/aboutus.html">About us</a></li>
+            <li><a href="/contactUs.html">Contact Us</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/searchPage.html">Search</a></li>
             <li id="nav-auth">
               <a href="./Authentication/SignUp.html" class="btn btn-hover">
                 <span>Sign Up</span>
@@ -103,6 +100,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="seriesDetailsPage.js"></script>
+    <script src="app.js"></script>
     <script>
       const navAuth = document.getElementById("nav-auth");
       const loggedUser = JSON.parse(localStorage.loggedInUser);
@@ -117,10 +115,12 @@
           </button>
         `;
 
-        document.getElementById("logout").addEventListener("click", function () {
-          localStorage.removeItem("loggedInUser");
-          window.location.href = "index.html"; // Ensure it works for all environments
-        });
+        document
+          .getElementById("logout")
+          .addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "index.html"; // Ensure it works for all environments
+          });
       }
     </script>
   </body>

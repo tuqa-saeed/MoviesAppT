@@ -121,4 +121,3 @@ fetchMovies();
 
 // Add scroll event listener
 window.addEventListener("scroll", handleScroll);
-(print) => console.log("hello");

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="services.css" />
+    <link rel="stylesheet" href="./app.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- NAV -->
+    <div class="nav-wrapper">
+      <div class="container">
+        <div class="nav">
+          <a href="#" class="logo">
+            <img src="./images/logo.png" alt="moflix logo" />
+          </a>
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/aboutus.html">About us</a></li>
+            <li><a href="/contactUs.html">Contact Us</a></li>
+            <li><a href="searchPage.html">Search</a></li>
+            <li id="nav-auth">
+              <a href="./Authentication/SignUp.html" class="btn btn-hover">
+                <span>Sign Up</span>
+              </a>
+            </li>
+          </ul>
+          <div class="hamburger-menu" id="hamburger-menu">
+            <div class="hamburger"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END NAV -->
+
+    <!-- Icon Library -->
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <br />
+
+    <!-- the service -->
+    <div class="servies-header">Serv <span class="main-color">i</span>es</div>
+
+    <div class="card-container">
+      <div class="card">
+        <img src="./images/series/John_wick.jpg" alt="Sirver" />
+        <div class="card-content">
+          <h3>🎞️ Discover Movies Like Never Before</h3>
+          <p>
+            Our platform transforms the way you discover movies. With
+            intelligent recommendations, real-time updates, and an intuitive
+            design, you’ll always find something new and exciting to watch.
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/series/got.jpg" alt="Sirver" />
+        <div class="card-content">
+          <h3>🍿 Where Passion Meets Cinema!</h3>
+          <p>
+            We’re passionate about movies and offer curated content, detailed
+            reviews, and personalized suggestions to ensure every movie lover
+            finds something they’ll enjoy.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/series/prs.jfif" alt="Sirver" />
+        <div class="card-content">
+          <h3>🌟 Why Choose Us?</h3>
+          <p>
+            We’re your gateway to cinema! With daily updates, an easy-to-use
+            design, and smart recommendations, we promise a unique and enjoyable
+            experience.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- end service -->
+
+    <!-- FOOTER SECTION -->
+    <footer class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-9 col-md-9 col-sm-12">
+            <div class="content">
+              <a href="#" class="logo">
+                <img src="./images/logo.png" alt="moflix logo" />
+              </a>
+              <p>
+                A platform where users can explore currently showing movies and
+                view their schedules.
+              </p>
+              <div class="social-list">
+                <a href="#" class="social-item">
+                  <i class="bx bxl-facebook"></i>
+                </a>
+                <a href="#" class="social-item">
+                  <i class="bx bxl-twitter"></i>
+                </a>
+                <a href="#" class="social-item">
+                  <i class="bx bxl-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 col-md-3 col-sm-12">
+            <div class="row">
+              <div class="col-12 col-md-12 col-sm-12">
+                <div class="content">
+                  <p><b>Flix</b></p>
+                  <ul class="footer-menu">
+                    <li><a href="/aboutus.html">About us</a></li>
+                    <li><a href="/profile.html">My profile</a></li>
+                    <li><a href="/services.html">Services</a></li>
+                    <li><a href="/contactUs.html">Contact Us</a></li>
+                    <li><a href="/searchPage.html">Search</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- COPYRIGHT SECTION -->
+    <div class="copyright">Copyright 2023</div>
+    <!-- END COPYRIGHT SECTION -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+    <script>
+      const navAuth = document.getElementById("nav-auth");
+      const loggedUser = JSON.parse(localStorage.loggedInUser);
+
+      if (loggedUser && loggedUser.status) {
+        navAuth.innerHTML = `
+            <a href="profile.html" class="btn btn-hover">
+              <span>Profile</span>
+            </a>
+            <button id="logout" class="btn-danger btn-danger-hover">
+              <span>Logout</span>
+            </button>
+          `;
+
+        document
+          .getElementById("logout")
+          .addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "index.html";
+          });
+      }
+    </script>
+  </body>
+</html>

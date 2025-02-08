@@ -243,12 +243,7 @@ flex-direction: row;
 
   transform: scale(1.1) translateZ(30px); 
 }
-/* transform: perspective(500px) rotateX(-5deg) translateY(0);
-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-transform: perspective(500px) rotateX(-5deg) translateY(-5px) rotate(1deg); 
-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);  */
 
 
 .card img{
@@ -377,18 +372,13 @@ box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);  */
 
 
 
-/* footer */
-
-
-
+/* footer section css */
 
 footer.section {
-  padding-top: 80px;
   margin-top: 80px;
   padding-bottom: 80px;
   position: relative;
   background-color: var(--box-bg);
-  line-height: 2;
 }
 
 footer a:hover {
@@ -453,6 +443,8 @@ footer .content {
   background-color: var(--box-bg);
   text-align: center;
 }
+
+/* end footer */
 
   /* MEDIUM SCREEN */
 

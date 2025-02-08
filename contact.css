@@ -12,20 +12,14 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
-
 .body-b {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
-    padding: 50px;
     background-color: var(--body-bg);
     color: var(--text-color);
 }
-
-
-
 
 .container-c {
     width: 100%;

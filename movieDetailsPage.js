@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle Favorite Button Click
   favoriteBtn.addEventListener("click", () => {
-    if(loggeduser!=null){
+    if (loggeduser != null) {
       if (favorites.includes(movieId)) {
         // Remove from favorites
         favorites = favorites.filter((id) => id !== movieId);
@@ -155,8 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       // Save to localStorage
       localStorage.setItem("favorites", JSON.stringify(favorites));
-    }
-    else{
+    } else {
       window.location.assign("/Authentication/SignIn.html");
     }
   });

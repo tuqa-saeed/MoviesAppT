@@ -22,15 +22,12 @@
     padding: 10px;
    
 }
-#typing{
+#about{
     font-size: 1.9em; 
     color: #1f83ed;
-    overflow: hidden;
-    white-space: nowrap;
 }
 #txet{
     color: white;
-    
 }
 
 .div-name{
@@ -55,6 +52,9 @@ h2{
     text-align: center;
     color: #1f83ed;
     font-size: 1.9em;
+}
+
+.team-card {
     border-color: white;
     box-shadow: 0 5px 20px rgba(1 1 1 / 15);
     border-radius: 5px;
@@ -112,7 +112,7 @@ h2{
 
 
 
-        /* Media Query لـ max-width: 1023px */
+        
         @media (max-width: 1023px) {
             .main-section {
                 padding: 20px 50px;

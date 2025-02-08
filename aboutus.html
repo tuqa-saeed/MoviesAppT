@@ -1,78 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>about us </title>
-    <link rel="stylesheet" href="aboutus.css">
-    <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="grid.css">
-    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
-</head>
-<body class="about-body">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>about us</title>
+    <link rel="stylesheet" href="aboutus.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="grid.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="about-body">
     <div class="nav-wrapper">
-        <div class="container">
-          <div class="nav">
-            <a href="/" class="logo">
-                <img src="image.png" alt="Logo" class="logo" width="110px" height="110px">
+      <div class="container">
+        <div class="nav">
+          <a href="#" class="logo">
+            <img src="./images/logo.png" alt="moflix logo" />
+          </a>
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/contactUs.html">Contact Us</a></li>
+            <li><a href="/services.html">Services</a></li>
+            <li id="nav-auth">
+              <a href="./Authentication/SignUp.html" class="btn btn-hover">
+                <span>Sign Up</span>
               </a>
-            <ul class="nav-menu" id="nav-menu">
-              <li><a href="/">Home</a></li>
-              <li><a href="#">Genre</a></li>
-              <li><a href="#">Movies</a></li>
-              <li><a href="#">Series</a></li>
-              <li><a href="aboutus.html">About</a></li>
-              <li id="nav-auth">
-                <a href="./Authentication/SignUp.html" class="btn btn-hover">
-                  <span>Sign up</span>
-                </a>
-              </li>
-            </ul>
-            <!-- MOBILE MENU TOGGLE -->
-            <div class="hamburger-menu" id="hamburger-menu">
-              <div class="hamburger"></div>
-            </div>
+            </li>
+          </ul>
+          <div class="hamburger-menu" id="hamburger-menu">
+            <div class="hamburger"></div>
           </div>
         </div>
       </div>
-
+    </div>
 
     <main class="main-section">
+      <!-- about section id="about"-->
+      <section class="section-about">
+        <h1 class="div-about" id="typing"></h1>
+        <div class="div-about" id="txet">
+          The movie app is a digital platform designed to provide a
+          comprehensive experience for cinema lovers , allowing users to explore
+          a wide range of films, from the latest releases to beloved classics.
+          The app enables users to access detailed information about each movie,
+          including the plot, ratings, reviews, and cast, as well as watch
+          trailers. It also offers advanced features such as personalized
+          recommendations based on viewing preferences, helping users discover
+          new films that match their interests. With a user-friendly interface
+          and an innovative design, the app aims to enhance the movie-watching
+          experience, making it more interactive and enjoyable
+        </div>
+      </section>
 
-        <!-- about section id="about"-->
-        <section class="section-about">
-           <h1 class="div-about"  id="typing"> </h1>
-           <div class="div-about" id="txet">The movie app is a digital platform designed to provide a comprehensive experience for cinema lovers
-            , allowing users to explore a wide range of films, from the latest releases to beloved classics. 
-            The app enables users to access detailed information about each movie, including the plot, ratings,
-             reviews, and cast, as well as watch trailers. It also offers advanced features such as personalized 
-             recommendations based on viewing preferences, helping users discover new films that match their 
-             interests. With a user-friendly interface and an innovative design, the app aims to enhance the 
-             movie-watching experience, making it more interactive and enjoyable</div>
-        </section>
-
-        <h2>Our Team</h2>
-        <div id="team-container"></div>
-
+      <h2>Our Team</h2>
+      <div id="team-container"></div>
     </main>
-
-<div>
-    <footer class="section">
-      
+    <div>
+      <!-- FOOTER SECTION -->
+      <footer class="section">
         <div class="container">
-          
           <div class="row">
-            <div class="col-4 col-md-6 col-sm-12">
+            <div class="col-9 col-md-9 col-sm-12">
               <div class="content">
-             
-                <a href="#" class="logo-img">
-                  <img src="image.png" alt="Logo">
-              </a>
-  
-               
-                
-                 <p><br>
-                 A platform where users can explore currently showing movies and view their schedules.
+                <a href="#" class="logo">
+                  <img src="./images/logo.png" alt="moflix logo" />
+                </a>
+                <p>
+                  A platform where users can explore currently showing movies
+                  and view their schedules.
                 </p>
                 <div class="social-list">
                   <a href="#" class="social-item">
@@ -87,43 +84,40 @@
                 </div>
               </div>
             </div>
-            <div class="col-8 col-md-6 col-sm-12">
+            <div class="col-3 col-md-3 col-sm-12">
               <div class="row">
-                <div class="col-3 col-md-6 col-sm-6">
+                <div class="col-12 col-md-12 col-sm-12">
                   <div class="content">
-                    <p><b>Flix</b></p><br>
+                    <p><b>Flix</b></p>
                     <ul class="footer-menu">
-                      <li><a href="#">About us</a></li>
-                      <li><a href="#">My profile</a></li>
-                      <li><a href="#">Services</a></li>
-                      <li><a href="contactUs.html">Contact Us</a></li>
-
+                      <li><a href="/aboutus.html">About us</a></li>
+                      <li><a href="/profile.html">My profile</a></li>
+                      <li><a href="/services.html">Services</a></li>
+                      <li><a href="/contactUs.html">Contact Us</a></li>
+                      <li><a href="/searchPage.html">Search</a></li>
                     </ul>
                   </div>
                 </div>
-                
-                <div class="col-3 col-md-6 col-sm-6">
-                  <div class="content">
-                    <p><b>Help</b></p>
-                    
-                  </div>
-                </div>
-             
               </div>
             </div>
           </div>
         </div>
       </footer>
       <!-- END FOOTER SECTION -->
-  
- </div>
- <script src="about.js"></script>
- <script>
-    const navAuth = document.getElementById("nav-auth");
-        const loggedUser = JSON.parse(localStorage.loggedInUser);
+    </div>
+    <script src="about.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+    <script>
+      const navAuth = document.getElementById("nav-auth");
+      const loggedUser = JSON.parse(localStorage.loggedInUser);
 
-        if (loggedUser && loggedUser.status) {
-          navAuth.innerHTML = `
+      if (loggedUser && loggedUser.status) {
+        navAuth.innerHTML = `
             <a href="profile.html" class="btn btn-hover">
               <span>Profile</span>
             </a>
@@ -132,11 +126,13 @@
             </button>
           `;
 
-          document.getElementById("logout").addEventListener("click", function () {
+        document
+          .getElementById("logout")
+          .addEventListener("click", function () {
             localStorage.removeItem("loggedInUser");
             window.location.href = "aboutus.html"; // Ensure it works for all environments
           });
-        }
- </script>
-</body>
+      }
+    </script>
+  </body>
 </html>
