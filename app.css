@@ -80,6 +80,10 @@ img {
   font-weight: 900;
 }
 
+.logo img{
+  width: 100px;
+}
+
 .nav-menu {
   list-style-type: none;
   display: flex;

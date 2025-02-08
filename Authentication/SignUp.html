@@ -8,6 +8,7 @@
 
     <style>
       *{
+        font-family: Arial, sans-serif;
         list-style: none;
       }
 
@@ -28,13 +29,14 @@
         --space-top: 30px;
       }
       body {
-        font-family: Arial, sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
         margin: 0;
-        background-color: var(--body-bg);
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url("background.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
       }
       .container {
         display: flex;
@@ -45,6 +47,7 @@
         width: 400px;
         max-width: 90%;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 10px 0;
       }
       .login-box {
         padding: 40px;
@@ -106,14 +109,25 @@
         margin-left: 10px;
         display: none;
       }
+
+      @media(max-width: 500px){
+        .container{
+          border-radius: 0;
+          padding: 50px;
+          margin-top: 50px;
+          width: 100%;
+          height: 100%;
+          max-width: 100%;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="logo">Movies App</div>
-      <h2>Welcome to Best movies platform</h2>
+      <div class="logo"><img src="../images/logo.png" width="100" alt="Movies app logo"></div>
+      <h2>Join Us Today!</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam repudiandae consequuntur, quae ex consequatur modi.
+        Create an account to access unlimited movies, exclusive content, and personalized recommendations.
       </p>
         
       <form>

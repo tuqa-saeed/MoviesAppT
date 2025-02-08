@@ -35,7 +35,9 @@
         align-items: center;
         height: 100vh;
         margin: 0;
-        background-color: var(--body-bg);
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url("background.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
       }
 
       .container {
@@ -97,16 +99,25 @@
           width: 90%;
         }
       }
+
+      @media(max-width: 500px){
+        .container{
+          border-radius: 0;
+          margin-top: 50px;
+          width: 100%;
+          height: 100%;
+          max-width: 100%;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="login-box">
-        <div class="logo">Movies App</div>
-        <h2>Welcome to Best movies platform</h2>
+        <div class="logo"><img src="../images/logo.png" width="100" alt="Movies app logo"></div>
+        <h2>Welcome Back!</h2>
         <p>
-          Minnow Insights provides advanced data of content and target groups on
-          all streaming services worldwide.
+          Sign in to continue exploring the latest and greatest movies, TV shows, and more.
         </p>
         <form id="form">
           <p id="login-error">
@@ -116,7 +127,7 @@
           <input type="password" placeholder="Password" id="login-password" required />
           <button type="submit" id="login-btn" class="btn">Sign in</button>
         </form>
-        <p>New to Movies App? <a href="signup.html">Sign Up</a></p>
+        <p>New to Moflix? <a href="signup.html">Sign Up</a></p>
       </div>
     </div>
 

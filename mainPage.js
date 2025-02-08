@@ -371,7 +371,6 @@ function displayTopTvSeries(tvSeries) {
   tvCarousel.innerHTML = ""; // Clear any previous content
 
   tvSeries.forEach((series) => {
-    console.log(series);
     const seriesItem = document.createElement("div");
     seriesItem.classList.add("movie-item");
     const link = document.createElement("a");

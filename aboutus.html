@@ -22,9 +22,9 @@
               <li><a href="#">Movies</a></li>
               <li><a href="#">Series</a></li>
               <li><a href="aboutus.html">About</a></li>
-              <li>
-                <a href="./signIn.html" class="btn btn-hover">
-                  <span>Sign in</span>
+              <li id="nav-auth">
+                <a href="./Authentication/SignUp.html" class="btn btn-hover">
+                  <span>Sign up</span>
                 </a>
               </li>
             </ul>
@@ -143,5 +143,25 @@
   
  </div>
  <script src="about.js"></script>
+ <script>
+    const navAuth = document.getElementById("nav-auth");
+        const loggedUser = JSON.parse(localStorage.loggedInUser);
+
+        if (loggedUser && loggedUser.status) {
+          navAuth.innerHTML = `
+            <a href="profile.html" class="btn btn-hover">
+              <span>Profile</span>
+            </a>
+            <button id="logout" class="btn-danger btn-danger-hover">
+              <span>Logout</span>
+            </button>
+          `;
+
+          document.getElementById("logout").addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "aboutus.html"; // Ensure it works for all environments
+          });
+        }
+ </script>
 </body>
 </html>

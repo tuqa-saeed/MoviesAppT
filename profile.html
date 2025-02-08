@@ -119,6 +119,32 @@
           grid-template-columns: repeat(1, 1fr);
         }
       }
+
+      #passwords-match{
+        display: none;
+        position: fixed;
+        top: 100px;
+        left: 100;
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      #success-edit{
+        display: none;
+        position: fixed;
+        top: 100px;
+        right: 100px;
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+      }
     </style>
 </head>
 <body>
@@ -127,17 +153,14 @@
         <div class="container">
           <div class="nav">
             <a href="/index.html" class="logo">
-              <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span
-                class="main-color"
-                >i</span
-              >
+              <img src="./images/logo.png" width="20px" alt="">
             </a>
             <ul class="nav-menu" id="nav-menu">
               <li><a href="/">Home</a></li>
               <li><a href="#">Genre</a></li>
               <li><a href="#">Movies</a></li>
               <li><a href="#">Series</a></li>
-              <li><a href="#">About</a></li>
+              <li><a href="/aboutus.html">About</a></li>
               <li id="nav-auth">
                 
               </li>
@@ -167,6 +190,9 @@
           <label for="email">Email</label>
           <input type="text" name="email" id="email-form" required>
           
+          <p id="passwords-match">Passwords do not match!</p>
+          <p id="success-edit">Profile updated successfully!</p>
+
           <label for="password">Password</label>
           <input type="password" name="password" id="password-form" required>
           
@@ -191,11 +217,8 @@
           <div class="row">
             <div class="col-4 col-md-6 col-sm-12">
               <div class="content">
-                <a href="#" class="logo">
-                  <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span
-                    class="main-color"
-                    >i</span
-                  >x
+                <a href="/" class="logo">
+                  <img src="./images/logo.png" alt="Movieflix logo">
                 </a>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
@@ -273,7 +296,7 @@
 
           document.getElementById("logout").addEventListener("click", function () {
             localStorage.removeItem("loggedInUser");
-            window.location.href = "index.html"; // Ensure it works for all environments
+            window.location.href = "index.html";
           });
         }
 
@@ -282,7 +305,7 @@
 
           if (!userData) {
             alert("No user data found! Please log in.");
-            window.location.href = "index.html"; // Redirect if no user is logged in
+            window.location.href = "index.html";
             return;
           }
 
@@ -317,7 +340,13 @@
 
             // Validate passwords match
             if (updatedPassword !== confirmedPassword) {
-              alert("Passwords do not match!");
+              let passwordMatch = document.getElementById("passwords-match");
+              passwordMatch.style.display = "block";
+
+              setTimeout(() => {
+                  passwordMatch.style.display = "none";
+              }, 3000);
+
               return;
             }
 
@@ -325,7 +354,7 @@
             const updatedUserData = {
               username: updatedUsername,
               email: updatedEmail,
-              password: updatedPassword, // Now properly updated
+              password: updatedPassword,
               status: true,
               profileImage: userData.profileImage || "./images/profile-user.png",
             };
@@ -340,7 +369,15 @@
             );
             localStorage.setItem("users", JSON.stringify(users));
 
-            alert("Profile updated successfully!");
+            let successUpdate = document.getElementById("success-edit");
+            successUpdate.style.display = "block";
+
+            setTimeout(() => {
+              successUpdate.style.display = "none";
+            }, 3000);
+
+            return;
+
             window.location.href = "profile.html"; // Redirect back to profile page
           });
         });

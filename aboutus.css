@@ -6,15 +6,11 @@
 }
 .about-body{
     background-color:  #181616;
-    
 }
 
 .main-section{
-    
-
     padding: 30px 70px;
     margin-bottom: 10%;
-
 }
 .section-about{
     text-align: center;
@@ -34,8 +30,6 @@
     color: white;
 }
 
-
-
 .div-name{
     text-align: center;
     font-weight: bold;
@@ -44,26 +38,23 @@
     color: white; 
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
 }
-    .div-inf{
-text-align: center;
-
-
+.div-inf{
+    text-align: center;
 }
+
 .logo {
     font-size: 2rem;
     font-weight: 900;
-    margin-top: 10px;}
-
-
-
-
-
+    margin-top: 10px;
+}
  
 h2{
     text-align: center;
     color: #1f83ed;
     font-size: 1.9em;
-}.team-card {
+}
+
+.team-card {
     border-color: white;
     box-shadow: 0 5px 20px rgba(1 1 1 / 15);
     border-radius: 5px;
@@ -73,24 +64,24 @@ h2{
     display: inline-block;
     width: 200px;
     text-align: center;
-    
 }
+
 .team-card:hover{
     transform: scale(1.1);
     border: 2px solid ;
     border-color: #1f83ed;
 }
+
 .team-card:hover .team-card img {
     opacity: 0.9;
     border-color: #1f83ed;
 }
+
 .team-card img {
     width: 170px;
     height: 250px;
-   
-
-    
 }
+
 .team-card button {
     margin-top: 10px;
     padding: 5px 10px;
@@ -100,9 +91,11 @@ h2{
     border-radius: 4px;
     cursor: pointer;
 }
+
 .team-card button:hover {
     background-color: #221f1f;
 }
+
 .description {
     display: none;
     margin-top: 10px;
