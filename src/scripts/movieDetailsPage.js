@@ -118,7 +118,7 @@ if (movieId) {
 // Handle Favorite Button Click
 document.addEventListener("DOMContentLoaded", () => {
   const favoriteBtn = document.getElementById("favorite-btn");
-  const loggeduser = localStorage.getItem("loggedInUser");
+  const loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   if (!favoriteBtn) {
     console.error("Favorite button not found!");
@@ -130,41 +130,38 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  if (!loggeduser) {
+  if (!loggedUser) {
     favoriteBtn.addEventListener("click", () => {
-      window.location.assign("/Authentication/SignIn.html");
+      window.location.assign("../pages/Authentication/SignUp.html");
     });
     return;
   }
 
   // Retrieve user-specific favorites
-  let userFavorites =
-    JSON.parse(localStorage.getItem(`favorites_${loggeduser}`)) || [];
+  let favoritesData = loggedUser.favorites || [];
 
   // Check if movie is already favorited
-  if (userFavorites.includes(movieId)) {
+  if (favoritesData.includes(movieId)) {
     favoriteBtn.classList.add("favorited");
     favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
   }
 
   // Handle Favorite Button Click
   favoriteBtn.addEventListener("click", () => {
-    if (userFavorites.includes(movieId)) {
+    if (favoritesData.includes(movieId)) {
       // Remove from favorites
-      userFavorites = userFavorites.filter((id) => id !== movieId);
+      favoritesData = favoritesData.filter((id) => id !== movieId);
       favoriteBtn.classList.remove("favorited");
       favoriteBtn.innerHTML = '<i class="bx bx-heart"></i>'; // Empty heart icon
     } else {
       // Add to favorites
-      userFavorites.push(movieId);
+      favoritesData.push(movieId);
       favoriteBtn.classList.add("favorited");
       favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
     }
 
-    // Save user-specific favorites
-    localStorage.setItem(
-      `favorites_${loggeduser}`,
-      JSON.stringify(userFavorites)
-    );
+    // Update user object and save back to localStorage
+    loggedUser.favorites = favoritesData;
+    localStorage.setItem("loggedInUser", JSON.stringify(loggedUser));
   });
 });
