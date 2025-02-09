@@ -17,13 +17,14 @@
     <div class="nav-wrapper">
       <div class="container">
         <div class="nav">
-          <a href="#" class="logo">
+          <a href="../index.html" class="logo">
             <img src="../images/logo.png" alt="moflix logo" />
           </a>
           <ul class="nav-menu" id="nav-menu">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../pages/contactUs.html">Contact Us</a></li>
             <li><a href="../pages/services.html">Services</a></li>
+            <li><a href="../pages/searchPage.html">Search</a></li>
             <li id="nav-auth">
               <a href="../pages/Authentication/SignUp.html" class="btn btn-hover">
                 <span>Sign Up</span>
@@ -122,7 +123,7 @@
           .getElementById("logout")
           .addEventListener("click", function () {
             localStorage.removeItem("loggedInUser");
-            window.location.href = "aboutus.html"; // Ensure it works for all environments
+            window.location.href = "../pages/aboutus.html"; // Ensure it works for all environments
           });
       }
     </script>

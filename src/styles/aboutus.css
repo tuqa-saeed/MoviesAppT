@@ -2,7 +2,6 @@
 .main-section{
     padding: 30px 70px;
     margin-bottom: 10%;
-   
 }
 
 .section-about{
@@ -10,15 +9,12 @@
     padding: 30px;
     margin: 20px;
 }
-<<<<<<< HEAD
 .div-about{
     padding: 10px;
-   
-=======
+}
 
 .div-about {
   padding: 10px;
->>>>>>> ee2c2957d2f26b5d025449cf21dc23d148a537e0
 }
 #about{
     font-size: 1.9em; 
@@ -28,16 +24,28 @@
 #txet{
     color: white;
 }
+=======
+  padding: 30px 70px;
+  margin-bottom: 10%;
+ display: flex;
+ align-items: center;
+}
+
+.section-about{
+  text-align: center;
+  padding: 30px;
+  margin: 20px;
+}
 .div-about{
-    padding: 10px;
+  padding: 10px;
 }
 #about{
-    font-size: 1.9em; 
-    color: #1f83ed;
+  font-size: 1.9em; 
+  color: #1f83ed;
 }
 
 #txet{
-    color: white;
+  color: white;
 }
 
 .div-name{
@@ -48,18 +56,12 @@
     color: white; 
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
 }
-<<<<<<< HEAD
-.div-inf{
-    text-align: center;
-=======
-
 .div-inf {
   text-align: center;
->>>>>>> ee2c2957d2f26b5d025449cf21dc23d148a537e0
 }
 
 .div-inf{
-    text-align: center;
+  text-align: center;
 }
 
 .logo {
@@ -73,14 +75,6 @@ h2{
     color: #1f83ed;
     font-size: 1.9em;
 
-}
- 
-h2{
-    text-align: center;
-    color: #1f83ed;
-    font-size: 1.9em;
-}
-
 .team-card {
     border-color: white;
     box-shadow: 0 5px 20px rgba(1 1 1 / 15);
@@ -92,19 +86,11 @@ h2{
     width: 200px;
     text-align: center;
 }
-<<<<<<< HEAD
 .section-about{
     text-align: center;
     padding: 30px;
     margin: 20px;
-=======
-
-.section-about {
-  text-align: center;
-  padding: 30px;
-  margin: 20px;
->>>>>>> ee2c2957d2f26b5d025449cf21dc23d148a537e0
-}
+  }
 .team-container
 {
     text-align: center ;
@@ -112,14 +98,11 @@ h2{
 .main-section-ubs{
     text-align: center;
 }
-<<<<<<< HEAD
-=======
 .team-card:hover {
   transform: scale(1.1);
   border: 2px solid;
   border-color: #1f83ed;
-=======
-
+  }
 .section-about{
     text-align: center;
     padding: 30px;
@@ -128,18 +111,17 @@ h2{
 
 .team-container
 {
-    text-align: center ;
+  text-align: center ;
 }
 
 .main-section-ubs{
-    text-align: center;
+  text-align: center;
 }
 
->>>>>>> ee2c2957d2f26b5d025449cf21dc23d148a537e0
 .team-card:hover{
-    transform: scale(1.1);
-    border: 2px solid ;
-    border-color: #1f83ed;
+  transform: scale(1.1);
+  border: 2px solid ;
+  border-color: #1f83ed;
 }
 
 .team-card:hover .team-card img {
@@ -148,17 +130,10 @@ h2{
 }
 
 .team-card img {
-<<<<<<< HEAD
     text-align: center;
-    
     height: 250px;
-=======
-  text-align: center;
-  object-fit: cover;
-  height: 250px;
   text-align: center;
   height: 250px;
->>>>>>> ee2c2957d2f26b5d025449cf21dc23d148a537e0
 }
 
 .team-card button {
@@ -188,10 +163,6 @@ h2{
     top: 20px;  
     left: 40px; 
 }
-<<<<<<< HEAD
-
-
-
         
         @media (max-width: 1023px) {
             .main-section {
@@ -272,9 +243,6 @@ h2{
                 height: 80%;
             }
         }
-=======
-    top: 20px;  
-    left: 40px; 
 }
         
 @media (max-width: 1023px) {
@@ -359,4 +327,91 @@ h2{
         height: 80%;
     }
 }
->>>>>>> ee2c2957d2f26b5d025449cf21dc23d148a537e0
+  max-width: 100px; 
+  height: auto; 
+  position: absolute;
+  top: 20px;  
+  left: 40px; 
+}
+      
+@media (max-width: 1023px) {
+  .main-section {
+      padding: 20px 50px;
+  }
+
+  .artical {
+      width: calc(50% - 20px);
+  }
+  .section-cards{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 70%;
+      height: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-section {
+      padding: 10px 20px;
+  }
+
+  .artical {
+      width: 100%;
+      height: auto;
+      padding: 20px;
+  }
+
+  .div-name {
+      padding-top: 10px;
+  }.nav-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #181616;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+  }
+
+  .nav-menu li {
+      text-align: center;
+      padding: 10px 0;
+  }
+
+  .nav-menu li a {
+      color: white;
+      text-decoration: none;
+      display: block;
+  }.hamburger-menu {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+  }
+
+  .hamburger {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+  }
+
+  .nav-menu.active {
+      display: flex;
+  }
+  .section-cards{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 70%;
+      height: 50%;
+  }
+}@media (max-width: 300px){
+  .section-cards{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 80%;
+      height: 80%;
+  }
+}
