@@ -74,14 +74,12 @@ if (seriesId) {
         const seriesItem = document.createElement("div");
         seriesItem.classList.add("item");
         seriesItem.innerHTML = `
-        <a href="../pages/series-details.html">
           <img src="${
             series.poster_path
               ? `https://image.tmdb.org/t/p/w300${series.poster_path}`
               : "./images/movie-placeholder.jpg"
           }" alt="${series.name}">
           <p>${series.name}</p>
-          </a>
         `;
         similarMoviesList.appendChild(seriesItem);
       });
