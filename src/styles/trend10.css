@@ -22,8 +22,6 @@
   border-radius: 10px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.8s ease, color 0.8s ease;
- 
-
 }
 
 #title_top_movies:hover{
@@ -31,21 +29,17 @@
   transition: 0.3s ease-in-out;
 }
 
-
 .main-top_movies {
     font-size: 3rem;
     color: var(--main-color);
     margin: -1px;
-  }
-  
- 
+}
 
 #top10 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    
 }
 
 .item_top_movies {
@@ -58,8 +52,6 @@
     transition: transform 0.8s ease, box-shadow 0.8s ease;
     margin-bottom: 10px;
     transition:0.6s ;
-
-    
 }
 
 .item_top_movies:hover {
@@ -71,8 +63,6 @@
     background-color: #221F1F;
     margin-bottom: 20px;
     padding-bottom:auto; ;
-
-
 }
 
 
@@ -80,16 +70,12 @@
     width: 100%;
     height: auto;
     transition: transform 0.8s ease;
-
 }
 
 .item_top_movies img:hover {
     transition:0.8s ;
     transition: transform 0.8s ease;
-
 }
-
-
 
 .item_top_movies h2 {
     color: #ffffff;
@@ -98,7 +84,6 @@
     text-align:center;
     opacity: 0;
     transition: transform 0.8s ease, opacity 0.1s ease , padding 0.3s ease;
-
 }
 
 .item_top_movies:hover h2 {
@@ -107,9 +92,4 @@
     opacity: 0.7;
     transform: translateY(-2px) ; 
     transition:2s ;
-
-    
-
 }
-
-

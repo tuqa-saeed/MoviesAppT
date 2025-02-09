@@ -12,13 +12,12 @@
 }
 .div-about{
     padding: 10px;
-   
 }
 #about{
     font-size: 1.9em; 
     color: #1f83ed;
-     
 }
+
 #txet{
     color: white;
 }
@@ -31,6 +30,7 @@
     color: white; 
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
 }
+
 .div-inf{
     text-align: center;
 }
@@ -45,7 +45,6 @@ h2{
     text-align: center;
     color: #1f83ed;
     font-size: 1.9em;
-
 }
 
 .team-card {
@@ -59,18 +58,22 @@ h2{
     width: 200px;
     text-align: center;
 }
+
 .section-about{
     text-align: center;
     padding: 30px;
     margin: 20px;
 }
+
 .team-container
 {
     text-align: center ;
 }
+
 .main-section-ubs{
     text-align: center;
 }
+
 .team-card:hover{
     transform: scale(1.1);
     border: 2px solid ;
@@ -84,7 +87,6 @@ h2{
 
 .team-card img {
     text-align: center;
-    
     height: 250px;
 }
 
@@ -115,86 +117,85 @@ h2{
     top: 20px;  
     left: 40px; 
 }
-
-
-
         
-        @media (max-width: 1023px) {
-            .main-section {
-                padding: 20px 50px;
-            }
+@media (max-width: 1023px) {
+    .main-section {
+        padding: 20px 50px;
+    }
 
-            .artical {
-                width: calc(50% - 20px);
-            }
-            .section-cards{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                width: 70%;
-                height: 50%;
-            }
-        }@media (max-width: 768px) {
-            .main-section {
-                padding: 10px 20px;
-            }
+    .artical {
+        width: calc(50% - 20px);
+    }
+    .section-cards{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 70%;
+        height: 50%;
+    }
+}
 
-            .artical {
-                width: 100%;
-                height: auto;
-                padding: 20px;
-            }
+@media (max-width: 768px) {
+    .main-section {
+        padding: 10px 20px;
+    }
 
-            .div-name {
-                padding-top: 10px;
-            }.nav-menu {
-                display: none;
-                flex-direction: column;
-                background-color: #181616;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-            }
+    .artical {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
 
-            .nav-menu li {
-                text-align: center;
-                padding: 10px 0;
-            }
+    .div-name {
+        padding-top: 10px;
+    }.nav-menu {
+        display: none;
+        flex-direction: column;
+        background-color: #181616;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+    }
 
-            .nav-menu li a {
-                color: white;
-                text-decoration: none;
-                display: block;
-            }.hamburger-menu {
-                display: flex;
-                flex-direction: column;
-                cursor: pointer;
-            }
+    .nav-menu li {
+        text-align: center;
+        padding: 10px 0;
+    }
 
-            .hamburger {
-                width: 25px;
-                height: 3px;
-                background-color: white;
-                margin: 4px 0;
-            }
+    .nav-menu li a {
+        color: white;
+        text-decoration: none;
+        display: block;
+    }.hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+    }
 
-            .nav-menu.active {
-                display: flex;
-            }
-            .section-cards{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                width: 70%;
-                height: 50%;
-            }
-        }@media (max-width: 300px){
-            .section-cards{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                width: 80%;
-                height: 80%;
-            }
-        }
+    .hamburger {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 4px 0;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+    .section-cards{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 70%;
+        height: 50%;
+    }
+}@media (max-width: 300px){
+    .section-cards{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 80%;
+        height: 80%;
+    }
+}

@@ -72,7 +72,7 @@ if (movieId) {
         const movieItem = document.createElement("div");
         movieItem.classList.add("item");
         movieItem.innerHTML = `
-        <a href="movie-details.html?id=${movie.id}">
+        <a href="/src/pages/movie-details.html?id=${movie.id}">
           <img src="${
             movie.poster_path
               ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
