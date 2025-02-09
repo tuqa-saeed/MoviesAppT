@@ -125,43 +125,38 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  if (!movieId) {
-    console.error("Movie ID not found in URL!");
-    return;
-  }
-
   if (!loggedUser) {
     favoriteBtn.addEventListener("click", () => {
-      window.location.assign("../pages/Authentication/SignUp.html");
+      window.location.assign("/Authentication/SignIn.html");
     });
     return;
   }
 
-  // Retrieve user-specific favorites
-  let favoritesData = loggedUser.favorites || [];
+  // Create a unique key for storing favorites
+  const favKey = `fav_${loggedUser.username}`;
+  let userFavorites = JSON.parse(localStorage.getItem(favKey)) || [];
 
   // Check if movie is already favorited
-  if (favoritesData.includes(movieId)) {
+  if (userFavorites.includes(movieId)) {
     favoriteBtn.classList.add("favorited");
     favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
   }
 
   // Handle Favorite Button Click
   favoriteBtn.addEventListener("click", () => {
-    if (favoritesData.includes(movieId)) {
+    if (userFavorites.includes(movieId)) {
       // Remove from favorites
-      favoritesData = favoritesData.filter((id) => id !== movieId);
+      userFavorites = userFavorites.filter((id) => id !== movieId);
       favoriteBtn.classList.remove("favorited");
       favoriteBtn.innerHTML = '<i class="bx bx-heart"></i>'; // Empty heart icon
     } else {
       // Add to favorites
-      favoritesData.push(movieId);
+      userFavorites.push(movieId);
       favoriteBtn.classList.add("favorited");
       favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
     }
 
-    // Update user object and save back to localStorage
-    loggedUser.favorites = favoritesData;
-    localStorage.setItem("loggedInUser", JSON.stringify(loggedUser));
+    // Save user-specific favorites in localStorage with custom key
+    localStorage.setItem(favKey, JSON.stringify(userFavorites));
   });
 });

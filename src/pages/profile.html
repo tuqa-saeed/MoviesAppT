@@ -245,12 +245,13 @@
       // Favorite Movies
       document.addEventListener("DOMContentLoaded", () => {
         const cards_container = document.getElementById("cards-container");
+        const loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
         if (!cards_container) {
           console.error("Cards container not found!");
           return;
         }
 
-        const loggedUser = JSON.parse(localStorage.getItem("loggedInUser")); // Parse user object
         if (!loggedUser || !loggedUser.favorites) {
           console.log("No logged-in user or no favorites found.");
           return;
@@ -264,6 +265,7 @@
           return;
         }
 
+        // Loop through favorites and fetch movie data
         favorites.forEach((movieId) => {
           fetch(
             `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
@@ -283,6 +285,50 @@
                 return;
               }
 
+              // Generate the movie card
+              const movieCard = document.createElement("div");
+              movieCard.classList.add("card");
+
+              movieCard.innerHTML = `
+          <img src="https://image.tmdb.org/t/p/w300${data.poster_path}" alt="${data.title}" width="200px">
+          <a href="movie-details.html?id=${movieId}"><h2>${data.title}</h2></a>
+          <button class="favorite-btn" id="favorite-btn-${movieId}">
+            <i class="bx bx-heart"></i>
+          </button>
+        `;
+
+              cards_container.appendChild(movieCard);
+
+              // Favorite button handling
+              const favoriteBtn = movieCard.querySelector(
+                `#favorite-btn-${movieId}`
+              );
+              const favKey = `fav_${loggedUser.username}`;
+              let userFavorites =
+                JSON.parse(localStorage.getItem(favKey)) || [];
+
+              if (userFavorites.includes(movieId)) {
+                favoriteBtn.classList.add("favorited");
+                favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
+              }
+
+              // Handle Favorite Button Click
+              favoriteBtn.addEventListener("click", () => {
+                if (userFavorites.includes(movieId)) {
+                  // Remove from favorites
+                  userFavorites = userFavorites.filter((id) => id !== movieId);
+                  favoriteBtn.classList.remove("favorited");
+                  favoriteBtn.innerHTML = '<i class="bx bx-heart"></i>'; // Empty heart icon
+                } else {
+                  // Add to favorites
+                  userFavorites.push(movieId);
+                  favoriteBtn.classList.add("favorited");
+                  favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
+                }
+
+                // Save user-specific favorites in localStorage
+                localStorage.setItem(favKey, JSON.stringify(userFavorites));
+              });
               // Append movie card to the container
               cards_container.innerHTML += `
           <div class="card">
