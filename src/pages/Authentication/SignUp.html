@@ -6,7 +6,7 @@
     <title>Sign Up</title>
     <link rel="shortcut icon" type="x-icon" href="../../images/popcorn.png" />
     <script src="https://kit.fontawesome.com/d890c03bb3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./register.css">
+    <link rel="stylesheet" href="../../styles/register.css">
   </head>
   <body>
     <div class="container">
@@ -124,9 +124,9 @@
           username: username.value,
           email: email.value,
           password: password.value,
-          status: false,
+          status: false,  
           profileImage: "../../images/profile-user.png",
-          favorites: [],
+          favorites : []
         };
 
         // Add new user and update local storage
@@ -134,7 +134,7 @@
         localStorage.setItem("users", JSON.stringify(users));
 
         // Redirect after successful registration
-        window.location.assign("signin.html");
+        window.location.assign("./SignIn.html");
       });
     </script>
   </body>
