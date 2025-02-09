@@ -31,6 +31,7 @@
             <li><a href="aboutus.html">About us</a></li>
             <li><a href="contactUs.html">Contact Us</a></li>
             <li><a href="services.html">Services</a></li>
+            <li><a href="searchPage.html">Search</a></li>
 
             <li id="nav-auth">
               <a href="./Authentication/SignUp.html" class="btn btn-hover">
@@ -286,7 +287,7 @@
               cards_container.innerHTML += `
           <div class="card">
             <img src="https://image.tmdb.org/t/p/w300${data.poster_path}" alt="${data.title}" width="200px">
-            <a href="movie-details.html?id=${movieId}"><h2>${data.title}</h2></a>
+            <a href="../pages/movie-details.html?id=${movieId}"><h2>${data.title}</h2></a>
           </div>`;
             })
             .catch((error) =>
