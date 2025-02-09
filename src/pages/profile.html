@@ -299,14 +299,14 @@
           .getElementById("logout")
           .addEventListener("click", function () {
             localStorage.removeItem("loggedInUser");
-            window.location.href = "/src/index.html";
+            window.location.href = "../index.html";
           });
       }
 
       document.addEventListener("DOMContentLoaded", function () {
         const storedUserData = localStorage.getItem("loggedInUser");
         if (!storedUserData) {
-          window.location.href = "/src/index.html";
+          window.location.href = "../index.html";
           return;
         }
 
@@ -315,8 +315,8 @@
         // Display user info
         document.getElementById("username").innerHTML = `@${userData.username}`;
         document.getElementById("profile-image").src =
-        // userData.profileImage || "../../images/profile-user.png";
-        "../images/profile-user.png";
+          // userData.profileImage || "../../images/profile-user.png";
+          "../images/profile-user.png";
 
         // Form fields
         const usernameForm = document.getElementById("username-form");
@@ -358,7 +358,7 @@
             status: true,
             profileImage: userData.profileImage || "./images/profile-user.png",
           };
-          
+
           localStorage.setItem("loggedInUser", JSON.stringify(updatedUserData));
 
           // Update users list in localStorage
@@ -373,45 +373,64 @@
 
           setTimeout(() => {
             successUpdate.style.display = "none";
-            window.location.href = "/src/pages/profile.html";
+            window.location.href = "./profile.html";
           }, 3000);
         });
       });
 
       // Favorite Movies
-      const cards_container = document.getElementById("cards-container");
-      const loggeduser = localStorage.getItem("loggedInUser");
-      const favoritesData = localStorage.getItem(`favorites_${loggeduser}`);
-
-      if (favoritesData) {
-        const favorites = JSON.parse(favoritesData);
-        if (favorites.length > 0) {
-          favorites.forEach((movieId) => {
-            fetch(
-              `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
-              {
-                method: "GET",
-                headers: {
-                  accept: "application/json",
-                  Authorization:
-                    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjU2MTA2YzQzZWQ4YTE4MWY1NTQ1MWQyNzE1N2IwNSIsIm5iZiI6MTY1Mzc1MzI3Ni42NTEsInN1YiI6IjYyOTI0NWJjNWE0NjkwMDA5ZTQ1YzYyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJVNpdz4E-lTr5XxqqUpbVkVRufZ_llITMvAPxrtxFw",
-                },
-              }
-            )
-              .then((response) => response.json())
-              .then((data) => {
-                cards_container.innerHTML += `
-            <div class="card">
-              <img src="https://image.tmdb.org/t/p/w300${data.poster_path}" id="movie-banner" width="200px" alt="movie title">
-              <a href="movie-details.html?id=${movieId}"><h2>${data.title}</h2></a>
-            </div>`;
-              })
-              .catch((error) =>
-                console.error("Error fetching movie details:", error)
-              );
-          });
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards_container = document.getElementById("cards-container");
+        if (!cards_container) {
+          console.error("Cards container not found!");
+          return;
         }
-      }
+
+        const loggedUser = JSON.parse(localStorage.getItem("loggedInUser")); // Parse user object
+        if (!loggedUser || !loggedUser.favorites) {
+          console.log("No logged-in user or no favorites found.");
+          return;
+        }
+
+        const favorites = loggedUser.favorites; // Retrieve favorites array
+        console.log("User's favorite movies:", favorites);
+
+        if (favorites.length === 0) {
+          console.log("No favorite movies to display.");
+          return;
+        }
+
+        favorites.forEach((movieId) => {
+          fetch(
+            `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+            {
+              method: "GET",
+              headers: {
+                accept: "application/json",
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjU2MTA2YzQzZWQ4YTE4MWY1NTQ1MWQyNzE1N2IwNSIsIm5iZiI6MTY1Mzc1MzI3Ni42NTEsInN1YiI6IjYyOTI0NWJjNWE0NjkwMDA5ZTQ1YzYyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJVNpdz4E-lTr5XxqqUpbVkVRufZ_llITMvAPxrtxFw",
+              },
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              if (!data || !data.poster_path) {
+                console.warn(`Movie with ID ${movieId} not found.`);
+                return;
+              }
+
+              // Append movie card to the container
+              cards_container.innerHTML += `
+          <div class="card">
+            <img src="https://image.tmdb.org/t/p/w300${data.poster_path}" alt="${data.title}" width="200px">
+            <a href="movie-details.html?id=${movieId}"><h2>${data.title}</h2></a>
+          </div>`;
+            })
+            .catch((error) =>
+              console.error("Error fetching movie details:", error)
+            );
+        });
+      });
     </script>
   </body>
 </html>

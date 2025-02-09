@@ -36,7 +36,8 @@
         align-items: center;
         height: 100vh;
         margin: 0;
-        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url("background.jpg");
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
+          url("background.jpg");
         background-size: cover;
         background-repeat: no-repeat;
       }
@@ -101,8 +102,8 @@
         }
       }
 
-      @media(max-width: 500px){
-        .container{
+      @media (max-width: 500px) {
+        .container {
           border-radius: 0;
           margin-top: 50px;
           width: 100%;
@@ -115,20 +116,29 @@
   <body>
     <div class="container">
       <div class="login-box">
-        <div class="logo"><img src="../../images/logo.png" width="100" alt="Movies app logo"></div>
+        <div class="logo">
+          <img src="../../images/logo.png" width="100" alt="Movies app logo" />
+        </div>
         <h2>Welcome Back!</h2>
         <p>
-          Sign in to continue exploring the latest and greatest movies, TV shows, and more.
+          Sign in to continue exploring the latest and greatest movies, TV
+          shows, and more.
         </p>
         <form id="form">
           <p id="login-error">
-            <i class="fa-solid fa-triangle-exclamation"></i> Invalid email or password
+            <i class="fa-solid fa-triangle-exclamation"></i> Invalid email or
+            password
           </p>
           <input type="email" placeholder="Email" id="login-email" required />
-          <input type="password" placeholder="Password" id="login-password" required />
+          <input
+            type="password"
+            placeholder="Password"
+            id="login-password"
+            required
+          />
           <button type="submit" id="login-btn" class="btn">Sign in</button>
         </form>
-        <p>New to Moflix? <a href="./signup.html">Sign Up</a></p>
+        <p>New to Moflix? <a href="./SignIn.html">Sign Up</a></p>
       </div>
     </div>
 
@@ -146,7 +156,9 @@
 
         // Find the user
         let foundUser = users.find(
-          (user) => user.email === loginEmail.value && user.password === loginPassword.value
+          (user) =>
+            user.email === loginEmail.value &&
+            user.password === loginPassword.value
         );
 
         if (foundUser) {
@@ -158,12 +170,12 @@
               email: foundUser.email,
               profileImage: foundUser.profileImage,
               status: true,
-              favioites: []
+              favourites: [],
             })
           );
 
           // Redirect to the homepage
-          window.location.assign("http://127.0.0.1:5500/src/index.html");
+          window.location.href("../../index.html");
         } else {
           loginError.style.display = "block";
         }
