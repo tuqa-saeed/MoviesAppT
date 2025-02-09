@@ -1,34 +1,33 @@
 const teamData = [
     {
-        "name": "Mohammad ",
-        "role": "Scream Master",
+        "name": "Mohammad Shoubash",
+        "role": "Scrum Master",
         "description": "Full Stack development",
-         "image": "/images/img-team/img/mohammad shoubash.JPG"
-
+         "image": "../images/img-team/img/mohammad shoubash.JPG"
     },
     {
         "name": "Mohammad Jamal",
-        "role": "product Owner",
+        "role": "Product Owner",
         "description": "Full Stack development",
-        "image": "/images/img-team/img/mohamm.png"
+        "image": "../images/img-team/img/mohamm.png"
     },
     {
         "name": "Qutaiba ALSinjlawi",
         "role": "Development team",
         "description": "Full Stack development",
-        "image": "/images/img-team/img/Qut.png"
+        "image": "../images/img-team/img/Qut.png"
     },
     {
         "name": "tuqa Saeed",
         "role": "Development team",
         "description": "Full Stack development",
-        "image": "/images/img-team/img/tuq.png"
+        "image": "../images/img-team/img/tuq.png"
     },
     {
         "name": "Heba altayeb",
         "role": "Development team",
         "description": "Full Stack development",
-        "image": "/images/img-team/img/d21e896d-3020-4489-b8d1-9fc220c2619e.jpg"
+        "image": "../images/img-team/img/d21e896d-3020-4489-b8d1-9fc220c2619e.jpg"
     }
 
 

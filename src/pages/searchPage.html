@@ -4,14 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="trend10.css"/>
-    <title>Flix - Movie Search</title>
+    <link rel="shortcut icon" type="x-icon" href="../images/popcorn.png" />
+    <link rel="stylesheet" href="../styles/trend10.css"/>
+    <title>Moflex</title>
 
     <!-- Favicon -->
     <link
       rel="shortcut icon"
       type="image/x-icon"
-      href="./images/movie-logo.png"
+      href="../images/movie-logo.png"
     />
 
     <!-- Google Fonts -->
@@ -22,8 +23,8 @@
     />
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="searchPage.css" />
+    <link rel="stylesheet" href="../styles/app.css" />
+    <link rel="stylesheet" href="../styles/searchPage.css" />
   </head>
   <body>
     <!-- Navigation -->
@@ -31,15 +32,15 @@
       <div class="container">
         <div class="nav">
           <a href="#" class="logo">
-            <img src="./images/logo.png" alt="moflix logo" />
+            <img src="../images/logo.png" alt="moflix logo" />
           </a>
           <ul class="nav-menu" id="nav-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/aboutus.html">About us</a></li>
-            <li><a href="/contactUs.html">Contact Us</a></li>
-            <li><a href="/services.html">Services</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../pages/aboutus.html">About us</a></li>
+            <li><a href="../pages/contactUs.html">Contact Us</a></li>
+            <li><a href="../pages/services.html">Services</a></li>
             <li id="nav-auth">
-              <a href="./Authentication/SignUp.html" class="btn btn-hover">
+              <a href="../pages/Authentication/SignUp.html" class="btn btn-hover">
                 <span>Sign Up</span>
               </a>
             </li>
@@ -90,13 +91,13 @@
     </section>
 
     <!-- Scripts -->
-    <script src="searchPage.js"></script>
+    <script src="../scripts/searchPage.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-    <script src="app.js"></script>
+    <script src="../scripts/app.js"></script>
     <script>
       const navAuth = document.getElementById("nav-auth");
       const loggedUser = JSON.parse(localStorage.loggedInUser);

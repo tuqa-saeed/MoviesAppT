@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>about us</title>
-    <link rel="stylesheet" href="aboutus.css" />
-    <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="grid.css" />
+    <link rel="stylesheet" href="../styles/aboutus.css" />
+    <link rel="stylesheet" href="../styles/app.css" />
+    <link rel="stylesheet" href="../styles/grid.css" />
+    <link rel="shortcut icon" type="x-icon" href="../images/popcorn.png" />
     <link
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       rel="stylesheet"
@@ -17,14 +18,14 @@
       <div class="container">
         <div class="nav">
           <a href="#" class="logo">
-            <img src="./images/logo.png" alt="moflix logo" />
+            <img src="../images/logo.png" alt="moflix logo" />
           </a>
           <ul class="nav-menu" id="nav-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/contactUs.html">Contact Us</a></li>
-            <li><a href="/services.html">Services</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../pages/contactUs.html">Contact Us</a></li>
+            <li><a href="../pages/services.html">Services</a></li>
             <li id="nav-auth">
-              <a href="./Authentication/SignUp.html" class="btn btn-hover">
+              <a href="../pages/Authentication/SignUp.html" class="btn btn-hover">
                 <span>Sign Up</span>
               </a>
             </li>
@@ -36,21 +37,12 @@
       </div>
     </div>
 
-    <main class="main-section">
+    <main class="main-section-ubs">
       <!-- about section id="about"-->
       <section class="section-about">
-        <h1 class="div-about" id="typing"></h1>
+        <h2 class="div-about" id="typing"></h2>
         <div class="div-about" id="txet">
-          The movie app is a digital platform designed to provide a
-          comprehensive experience for cinema lovers , allowing users to explore
-          a wide range of films, from the latest releases to beloved classics.
-          The app enables users to access detailed information about each movie,
-          including the plot, ratings, reviews, and cast, as well as watch
-          trailers. It also offers advanced features such as personalized
-          recommendations based on viewing preferences, helping users discover
-          new films that match their interests. With a user-friendly interface
-          and an innovative design, the app aims to enhance the movie-watching
-          experience, making it more interactive and enjoyable
+          The app shows key movie details like title, genre, story summary, release date, rating, and runtime. It also includes budget and production company info to help users pick movies easily.
         </div>
       </section>
 
@@ -65,7 +57,7 @@
             <div class="col-9 col-md-9 col-sm-12">
               <div class="content">
                 <a href="#" class="logo">
-                  <img src="./images/logo.png" alt="moflix logo" />
+                  <img src="../images/logo.png" alt="moflix logo" />
                 </a>
                 <p>
                   A platform where users can explore currently showing movies
@@ -88,13 +80,13 @@
               <div class="row">
                 <div class="col-12 col-md-12 col-sm-12">
                   <div class="content">
-                    <p><b>Flix</b></p>
+                    <p><b>Moflix</b></p>
                     <ul class="footer-menu">
-                      <li><a href="/aboutus.html">About us</a></li>
-                      <li><a href="/profile.html">My profile</a></li>
-                      <li><a href="/services.html">Services</a></li>
-                      <li><a href="/contactUs.html">Contact Us</a></li>
-                      <li><a href="/searchPage.html">Search</a></li>
+                      <li><a href="../pages/aboutus.html">About us</a></li>
+                      <li><a href="../pages/profile.html">My profile</a></li>
+                      <li><a href="../pages/services.html">Services</a></li>
+                      <li><a href="../pages/contactUs.html">Contact Us</a></li>
+                      <li><a href="../pages/searchPage.html">Search</a></li>
                     </ul>
                   </div>
                 </div>
@@ -105,13 +97,13 @@
       </footer>
       <!-- END FOOTER SECTION -->
     </div>
-    <script src="about.js"></script>
+    <script src="../scripts/about.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-    <script src="app.js"></script>
+    <script src="../scripts/app.js"></script>
     <script>
       const navAuth = document.getElementById("nav-auth");
       const loggedUser = JSON.parse(localStorage.loggedInUser);

@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./app.css" />
-    <link rel="stylesheet" href="./grid.css" />
+    <title>Profile page</title>
+    <link rel="stylesheet" href="../styles/app.css" />
+    <link rel="stylesheet" href="../styles/grid.css" />
+    <link rel="shortcut icon" type="x-icon" href="../images/popcorn.png" />
     <link
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       rel="stylesheet"
@@ -160,13 +161,13 @@
       <div class="container">
         <div class="nav">
           <a href="#" class="logo">
-            <img src="./images/logo.png" alt="moflix logo" />
+            <img src="../images/logo.png" alt="moflix logo" />
           </a>
           <ul class="nav-menu" id="nav-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/aboutus.html">About us</a></li>
-            <li><a href="/contactUs.html">Contact Us</a></li>
-            <li><a href="/services.html">Services</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="aboutus.html">About us</a></li>
+            <li><a href="contactUs.html">Contact Us</a></li>
+            <li><a href="services.html">Services</a></li>
 
             <li id="nav-auth">
               <a href="./Authentication/SignUp.html" class="btn btn-hover">
@@ -185,7 +186,7 @@
     <!-- USER DATA -->
     <div class="main">
       <img
-        src="#"
+        src="../images/profile-user.png"
         id="profile-image"
         class="profile-image"
         alt="profile image"
@@ -234,7 +235,7 @@
           <div class="col-9 col-md-9 col-sm-12">
             <div class="content">
               <a href="#" class="logo">
-                <img src="./images/logo.png" alt="moflix logo" />
+                <img src="../images/logo.png" alt="moflix logo" />
               </a>
               <p>
                 A platform where users can explore currently showing movies and
@@ -259,11 +260,11 @@
                 <div class="content">
                   <p><b>Flix</b></p>
                   <ul class="footer-menu">
-                    <li><a href="/aboutus.html">About us</a></li>
-                    <li><a href="/profile.html">My profile</a></li>
-                    <li><a href="/services.html">Services</a></li>
-                    <li><a href="/contactUs.html">Contact Us</a></li>
-                    <li><a href="/searchPage.html">Search</a></li>
+                    <li><a href="aboutus.html">About us</a></li>
+                    <li><a href="profile.html">My profile</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contactUs.html">Contact Us</a></li>
+                    <li><a href="searchPage.html">Search</a></li>
                   </ul>
                 </div>
               </div>
@@ -278,7 +279,7 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-    <script src="app.js"></script>
+    <script src="../scripts/app.js"></script>
     <script>
       const navAuth = document.getElementById("nav-auth");
       const storedUser = localStorage.getItem("loggedInUser");
@@ -298,15 +299,14 @@
           .getElementById("logout")
           .addEventListener("click", function () {
             localStorage.removeItem("loggedInUser");
-            window.location.href = "index.html";
+            window.location.href = "/src/index.html";
           });
       }
 
       document.addEventListener("DOMContentLoaded", function () {
         const storedUserData = localStorage.getItem("loggedInUser");
         if (!storedUserData) {
-          alert("No user data found! Please log in.");
-          window.location.href = "index.html";
+          window.location.href = "/src/index.html";
           return;
         }
 
@@ -315,7 +315,8 @@
         // Display user info
         document.getElementById("username").innerHTML = `@${userData.username}`;
         document.getElementById("profile-image").src =
-          userData.profileImage || "./images/profile-user.png";
+        // userData.profileImage || "../../images/profile-user.png";
+        "../images/profile-user.png";
 
         // Form fields
         const usernameForm = document.getElementById("username-form");
@@ -357,7 +358,7 @@
             status: true,
             profileImage: userData.profileImage || "./images/profile-user.png",
           };
-
+          
           localStorage.setItem("loggedInUser", JSON.stringify(updatedUserData));
 
           // Update users list in localStorage
@@ -372,7 +373,7 @@
 
           setTimeout(() => {
             successUpdate.style.display = "none";
-            window.location.href = "profile.html"; // Redirect after success message
+            window.location.href = "/src/pages/profile.html";
           }, 3000);
         });
       });

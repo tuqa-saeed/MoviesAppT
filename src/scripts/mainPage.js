@@ -132,7 +132,7 @@ function displayMovies(movies) {
     action.classList.add("item-action", "top-down", "delay-6");
 
     const watchButton = document.createElement("a");
-    watchButton.href = `movie-details.html?id=${movie.id}`;
+    watchButton.href = `../src/pages/movie-details.html?id=${movie.id}`;
     watchButton.classList.add("btn", "btn-hover");
     watchButton.innerHTML = `<i class="bx bxs-right-arrow"></i> <span>Watch now</span>`;
 
@@ -168,7 +168,7 @@ function displayMovies(movies) {
       autoplay: true,
       autoplayHoverPause: true,
     });
-  }, 100); // Delay reinitialization
+  }, 10); // Delay reinitialization
 }
 
 // Fetch additional movie details like duration
@@ -207,12 +207,12 @@ function displayTopMovies(movies) {
     const img = document.createElement("img");
     const imageUrl = movie.poster_path
       ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-      : "./images/default-movie.jpg"; // Fallback image
+      : ""; // Fallback image
     img.src = imageUrl;
     img.alt = movie.title || "Untitled Movie";
     img.classList.add("movie-item-img");
     const link = document.createElement("a");
-    link.href = `movie-details.html?id=${movie.id}`;
+    link.href = `../src/pages/movie-details.html?id=${movie.id}`;
 
     const content = document.createElement("div");
     content.classList.add("movie-item-content");
@@ -280,7 +280,7 @@ function displayTopMovies(movies) {
         },
       },
     });
-  }, 100); // Delay reinitialization
+  }, 10); // Delay reinitialization
 }
 // Function to display top movies in a carousel
 function displayLastestMovies(movies) {
@@ -299,7 +299,7 @@ function displayLastestMovies(movies) {
     img.alt = movie.title || "Untitled Movie";
     img.classList.add("movie-item-img");
     const link = document.createElement("a");
-    link.href = `movie-details.html?id=${movie.id}`;
+    link.href = `../src/pages/movie-details.html?id=${movie.id}`;
 
     const content = document.createElement("div");
     content.classList.add("movie-item-content");
@@ -361,7 +361,7 @@ function displayLastestMovies(movies) {
         1600: { items: 6 },
       },
     });
-  }, 100); // Delay reinitialization
+  }, 10); // Delay reinitialization
 }
 
 // Function to display top movies in a carousel
@@ -374,7 +374,7 @@ function displayTopTvSeries(tvSeries) {
     const seriesItem = document.createElement("div");
     seriesItem.classList.add("movie-item");
     const link = document.createElement("a");
-    link.href = `series-details.html?id=${series.id}`;
+    link.href = `../src/pages/series-details.html?id=${series.id}`;
 
     const img = document.createElement("img");
     const imageUrl = series.poster_path
@@ -450,7 +450,7 @@ function displayTopTvSeries(tvSeries) {
         },
       },
     });
-  }, 100); // Delay reinitialization
+  }, 10); // Delay reinitialization
 }
 
 // Fetch additional TV series details like duration
@@ -491,7 +491,7 @@ function displayCartoonMovies(movies) {
 
   movies.forEach((movie) => {
     const movieItem = document.createElement("a");
-    movieItem.href = `movie-details.html?id=${movie.id}`;
+    movieItem.href = `../src/pages/movie-details.html?id=${movie.id}`;
     movieItem.classList.add("movie-item");
 
     const img = document.createElement("img");
@@ -550,7 +550,7 @@ function displayCartoonMovies(movies) {
         1600: { items: 6 },
       },
     });
-  }, 100);
+  }, 10);
 }
 
 // Call the function to load cartoons
@@ -626,7 +626,7 @@ fetch("https://api.themoviedb.org/3/trending/movie/day", options)
           // Update the "Watch now" button link (for example, to a details page)
           const watchLink = movieSection.querySelector(".item-action a");
           if (watchLink) {
-            watchLink.href = `movie-details.html?id=${movieData.id}`;
+            watchLink.href = `../src/pages/movie-details.html?id=${movie.id}`;
           }
         })
         .catch((error) =>

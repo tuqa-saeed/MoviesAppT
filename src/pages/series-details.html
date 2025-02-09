@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" type="x-icon" href="./images/movie-logo.png" />
+    <link rel="shortcut icon" type="x-icon" href="../images/popcorn.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flix - Series Details</title>
@@ -23,24 +23,24 @@
       rel="stylesheet"
     />
     <!-- APP CSS -->
-    <link rel="stylesheet" href="grid.css" />
-    <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="movie-details.css" />
+    <link rel="stylesheet" href="../styles/grid.css" />
+    <link rel="stylesheet" href="../styles/app.css" />
+    <link rel="stylesheet" href="../styles/movie-details.css" />
   </head>
   <body>
     <!-- Navigation -->
     <div class="nav-wrapper">
       <div class="container">
         <div class="nav">
-          <a href="#" class="logo">
-            <img src="./images/logo.png" alt="moflix logo" />
+          <a href="../index.html" class="logo">
+            <img src="../images/logo.png" alt="moflix logo" />
           </a>
           <ul class="nav-menu" id="nav-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/aboutus.html">About us</a></li>
-            <li><a href="/contactUs.html">Contact Us</a></li>
-            <li><a href="/services.html">Services</a></li>
-            <li><a href="/searchPage.html">Search</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../pages/aboutus.html">About us</a></li>
+            <li><a href="../pages/contactUs.html">Contact Us</a></li>
+            <li><a href="../pages/services.html">Services</a></li>
+            <li><a href="../pages/searchPage.html">Search</a></li>
             <li id="nav-auth">
               <a href="./Authentication/SignUp.html" class="btn btn-hover">
                 <span>Sign Up</span>
@@ -99,8 +99,8 @@
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="seriesDetailsPage.js"></script>
-    <script src="app.js"></script>
+    <script src="../scripts/seriesDetailsPage.js"></script>
+    <script src="../scripts/app.js"></script>
     <script>
       const navAuth = document.getElementById("nav-auth");
       const loggedUser = JSON.parse(localStorage.loggedInUser);
@@ -114,12 +114,12 @@
             <span>Logout</span>
           </button>
         `;
-
+          
         document
           .getElementById("logout")
           .addEventListener("click", function () {
             localStorage.removeItem("loggedInUser");
-            window.location.href = "index.html"; // Ensure it works for all environments
+            window.location.href = "../index.html"; // Ensure it works for all environments
           });
       }
     </script>
