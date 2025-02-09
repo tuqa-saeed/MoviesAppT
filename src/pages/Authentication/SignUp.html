@@ -6,6 +6,7 @@
     <title>Sign Up</title>
     <link rel="shortcut icon" type="x-icon" href="../../images/popcorn.png" />
     <script src="https://kit.fontawesome.com/d890c03bb3.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
 
     <style>
       *{
@@ -130,6 +131,9 @@
         }
       }
     </style>
+=======
+    <link rel="stylesheet" href="../../styles/register.css">
+>>>>>>> ee2c2957d2f26b5d025449cf21dc23d148a537e0
   </head>
   <body>
     <div class="container">
@@ -228,9 +232,13 @@
           username: username.value,
           email: email.value,
           password: password.value,
-          status: false,
+          status: false,  
           profileImage: "../../images/profile-user.png",
+<<<<<<< HEAD
           favorites: []
+=======
+          favorites : []
+>>>>>>> ee2c2957d2f26b5d025449cf21dc23d148a537e0
         };
     
         // Add new user and update local storage
@@ -238,7 +246,7 @@
         localStorage.setItem("users", JSON.stringify(users));
     
         // Redirect after successful registration
-        window.location.assign("signin.html");
+        window.location.assign("./SignIn.html");
       });
     </script>
     
