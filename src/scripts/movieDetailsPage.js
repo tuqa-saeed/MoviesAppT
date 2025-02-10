@@ -72,7 +72,7 @@ if (movieId) {
         const movieItem = document.createElement("div");
         movieItem.classList.add("item");
         movieItem.innerHTML = `
-        <a href="/src/pages/movie-details.html?id=${movie.id}">
+        <a href="movie-details.html?id=${movie.id}">
           <img src="${
             movie.poster_path
               ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
@@ -118,23 +118,28 @@ if (movieId) {
 // Handle Favorite Button Click
 document.addEventListener("DOMContentLoaded", () => {
   const favoriteBtn = document.getElementById("favorite-btn");
-  const loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const loggeduser = localStorage.getItem("loggedInUser");
 
   if (!favoriteBtn) {
     console.error("Favorite button not found!");
     return;
   }
 
-  if (!loggedUser) {
+  if (!movieId) {
+    console.error("Movie ID not found in URL!");
+    return;
+  }
+
+  if (!loggeduser) {
     favoriteBtn.addEventListener("click", () => {
       window.location.assign("/Authentication/SignIn.html");
     });
     return;
   }
 
-  // Create a unique key for storing favorites
-  const favKey = `fav_${loggedUser.username}`;
-  let userFavorites = JSON.parse(localStorage.getItem(favKey)) || [];
+  // Retrieve user-specific favorites
+  let userFavorites =
+    JSON.parse(localStorage.getItem(`favorites_${loggeduser}`)) || [];
 
   // Check if movie is already favorited
   if (userFavorites.includes(movieId)) {
@@ -156,7 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
       favoriteBtn.innerHTML = '<i class="bx bxs-heart"></i>'; // Filled heart icon
     }
 
-    // Save user-specific favorites in localStorage with custom key
-    localStorage.setItem(favKey, JSON.stringify(userFavorites));
+    // Save user-specific favorites
+    localStorage.setItem(
+      `favorites_${loggeduser}`,
+      JSON.stringify(userFavorites)
+    );
   });
 });

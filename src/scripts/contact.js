@@ -87,7 +87,7 @@ function sendMail(event) {
 
   let params = { name, email, phone, message };
 
-  email
+  emailjs
     .send("service_79iq44b", "template_yxjsvi4", params)
     .then(function () {
       if (feedback) feedback.style.display = "block";
