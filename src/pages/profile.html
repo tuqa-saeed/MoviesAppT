@@ -6,8 +6,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="../styles/app.css" />
     <link rel="stylesheet" href="../styles/grid.css" />
-    <link rel="stylesheet" href="../styles/profile.css">
-    
+    <link rel="stylesheet" href="../styles/profile.css" />
+
     <link
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       rel="stylesheet"
@@ -16,7 +16,6 @@
       src="https://kit.fontawesome.com/d890c03bb3.js"
       crossorigin="anonymous"
     ></script>
-
   </head>
   <body>
     <!-- NAV -->
@@ -34,7 +33,10 @@
             <li><a href="services.html">Services</a></li>
 
             <li id="nav-auth">
-              <a href="../pages/Authentication/SignUp.html" class="btn btn-hover">
+              <a
+                href="../pages/Authentication/SignUp.html"
+                class="btn btn-hover"
+              >
                 <span>Sign Up</span>
               </a>
             </li>
@@ -143,7 +145,7 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-    <script src="app.js"></script>
+    <script src="../scripts/app.js"></script>
     <script>
       const navAuth = document.getElementById("nav-auth");
       const storedUser = localStorage.getItem("loggedInUser");
@@ -180,7 +182,7 @@
         // Display user info
         document.getElementById("username").innerHTML = `@${userData.username}`;
         document.getElementById("profile-image").src =
-        "../images/profile-user.png";
+          "../images/profile-user.png";
 
         // Form fields
         const usernameForm = document.getElementById("username-form");

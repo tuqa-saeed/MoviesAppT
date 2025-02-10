@@ -80,7 +80,7 @@ img {
   font-weight: 900;
 }
 
-.logo img{
+.logo img {
   width: 100px;
 }
 
@@ -121,7 +121,7 @@ a.movie-item:hover {
   align-items: center;
 }
 
-.btn-danger{
+.btn-danger {
   color: #ffffff;
   padding: 0.25rem 1.5rem;
   text-transform: uppercase;
@@ -131,12 +131,12 @@ a.movie-item:hover {
   position: relative;
   align-items: center;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
   background-color: red;
   border: 1px solid red;
 }
 
-.btn-danger:hover{
+.btn-danger:hover {
   background-color: transparent;
 }
 
