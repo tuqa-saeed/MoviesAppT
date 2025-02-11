@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!loggeduser) {
     favoriteBtn.addEventListener("click", () => {
-      window.location.assign("/Authentication/SignIn.html");
+      window.location.assign("../pages/Authentication/SignIn.html");
     });
     return;
   }

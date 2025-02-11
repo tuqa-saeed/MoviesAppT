@@ -23,8 +23,7 @@ if (loggedUser && loggedUser.status) {
 document.addEventListener("DOMContentLoaded", function () {
   const storedUserData = localStorage.getItem("loggedInUser");
   if (!storedUserData) {
-    alert("No user data found! Please log in.");
-    window.location.href = "/src/index.html";
+    window.location.href = "/src/pages/Authentication/SignIn.html";
     return;
   }
 
